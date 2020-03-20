@@ -47,11 +47,11 @@ def is_visible(template, imgpath, SS_HOTKEY, keep_diff=False):
         for pt in zip(*loc[::-1]):
             cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
         cv2.imwrite('diff.png',img_rgb)
-        
-    print(loc)
-    os.remove(pic_path)
 
+    os.remove(pic_path)
+    return loc
     
+
 
 
 
@@ -66,8 +66,17 @@ if __name__ == '__main__':
     
     # print(pic_path)
     # img = cv2.imread(pic_path) 
-    template = cv2.imread('D:/Documents/git/tibia-tools/imgs/teste.png',0)
-    is_visible(template, SS_DIRPATH, SS_HOTKEY, True)
+    template = cv2.imread('D:/Documents/git/tibia-tools/imgs/empty_ring.png',0)
+    tmp = is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
+    x = []
+    for item in tmp:
+        x.extend(item)
+    if x == []:
+        print('ring not empty')
+    # if :
+    #     pyautogui.press('b')
+    # else:
+    #     pyautogui.press('r')
     # cv2.imshow('cu', img)
     # cv2.waitKey()
     # os.remove(pic_path)
