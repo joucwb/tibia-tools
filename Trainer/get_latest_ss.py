@@ -4,32 +4,45 @@ import pyautogui
 import time
 import numpy as np
 
-def get_latest_image(dirpath, valid_extensions=('jpg','jpeg','png')):
-    """
+def get_latest_image(SS_DIRPATH, valid_extensions=('jpg','jpeg','png')):
+    '''
     Get the latest image file in the given directory
-    """
+        @params
+        SS_DIRPATH: Tibia screenshots path folder
+
+        @return
+        last added image file
+    '''
 
     # get filepaths of all files and dirs in the given dir
-    valid_files = [os.path.join(dirpath, filename) for filename in os.listdir(dirpath)]
+    valid_files = [os.path.join(SS_DIRPATH, filename) for filename in os.listdir(SS_DIRPATH)]
     # filter out directories, no-extension, and wrong extension files
     valid_files = [f for f in valid_files if '.' in f and \
         f.rsplit('.',1)[-1] in valid_extensions and os.path.isfile(f)]
 
     if not valid_files:
-        raise ValueError("No valid images in %s" % dirpath)
+        raise ValueError("No valid images in %s" % SS_DIRPATH)
 
     return max(valid_files, key=os.path.getmtime) 
 
 
-def is_visible(template, imgpath, SS_HOTKEY, keep_diff=False):
-    """
+def is_visible(template, SS_DIRPATH, SS_HOTKEY, keep_diff=False):
+    '''
     Check if the image file is on the screen.
     After check, remove the png file.
-    """
+        @params
+        template: image file to be matched (e.g, .png)
+        SS_DIRPATH: Tibia screenshots path folder
+        SS_HOTKEY: screenshot hotkey
+        keep_diff: if True, save diff file
+
+        @return
+        tuple(coordinates found)
+    '''
     pyautogui.press(SS_HOTKEY) # Take screenshot
-    time.sleep(1)
+    time.sleep(1) 
     # Get the latest snapshot on the imgpath dir
-    pic_path = get_latest_image(imgpath, valid_extensions='png') 
+    pic_path = get_latest_image(SS_DIRPATH, valid_extensions='png') 
     # Read the snapshot
     img_rgb = cv2.imread(pic_path)
     # Changing: rgb -> grayscale
@@ -51,32 +64,36 @@ def is_visible(template, imgpath, SS_HOTKEY, keep_diff=False):
     os.remove(pic_path)
     return loc
     
+def life_ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
+    '''
+    Check if there's some life ring equipped
+    If ring slot empty, equip life ring
+        @params
+        SS_DIRPATH: Tibia screenshots path folder
+        SS_HOTKEY: screenshot hotkey
+        RING_HOTKEY: hotkey to equip ring
 
-
-
-
-if __name__ == '__main__':
-    SS_HOTKEY = "f12"
-    SS_DIRPATH = "D:/Games/Tibia/packages/Tibia/screenshots/"
-    time.sleep(1)
-    # pyautogui.press(SS_HOTKEY)
-    # time.sleep(1)
-    # Show latest screenshot
-    # pic_path = get_latest_image(r'D:/Games/Tibia/packages/Tibia/screenshots/', valid_extensions='png')
-    
-    # print(pic_path)
-    # img = cv2.imread(pic_path) 
+        @return
+        void
+    '''
     template = cv2.imread('D:/Documents/git/tibia-tools/imgs/empty_ring.png',0)
     tmp = is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
     x = []
     for item in tmp:
         x.extend(item)
     if x == []:
-        print('ring not empty')
-    # if :
-    #     pyautogui.press('b')
-    # else:
-    #     pyautogui.press('r')
-    # cv2.imshow('cu', img)
-    # cv2.waitKey()
-    # os.remove(pic_path)
+        print('Ring slot not empty!')
+        pyautogui.press('r') ############# TEST ##############
+    else:
+        print('Ring slot empty!')
+        pyautogui.press(RING_HOTKEY)
+
+
+
+if __name__ == '__main__':
+    SS_HOTKEY = "f12"
+    SS_DIRPATH = "D:/Games/Tibia/packages/Tibia/screenshots/"
+    RING_HOTKEY = "b"
+    time.sleep(1)
+
+    life_ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY)
