@@ -5,9 +5,16 @@ import time
 import numpy as np
 import settings
 
-def ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
+# class Healing:
+
+# 	# def __init__(self, SS_DIRPATH, SS_HOTKEY):
+# 	# 	self.dirr = SS_DIRPATH
+# 	# 	self.ss_screenshot = SS_HOTKEY
+
+
+def life_ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 	'''
-	Check if there's some ring equipped
+	Check if there's some life ring equipped
 	If so, equip it
 		@params
 		SS_DIRPATH: Tibia screenshots path folder
@@ -31,6 +38,7 @@ def ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 		# break
 
 
+
 def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 	'''
 	Check if there's some some soft boots equipped
@@ -38,7 +46,7 @@ def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 		@params
 		SS_DIRPATH: Tibia screenshots path folder
 		SS_HOTKEY: screenshot hotkey
-		RING_HOTKEY: hotkey to equip boots
+		RING_HOTKEY: hotkey to equip ring
 
 		@return
 		void
@@ -64,7 +72,7 @@ def eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
 		@params
 		SS_DIRPATH: Tibia screenshots path folder
 		SS_HOTKEY: screenshot hotkey
-		RING_HOTKEY: hotkey to eat food
+		RING_HOTKEY: hotkey to equip ring
 
 		@return
 		void
@@ -76,10 +84,10 @@ def eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
 		x.extend(item)
 	if x == []:
 		print('Not hungry!')
-		pyautogui.press('f4') ############# TEST ##############
+		pyautogui.press('r') ############# TEST ##############
 	else:
 		for _ in range(3):
 			pyautogui.press(FOOD_HOTKEY)
-			# time.sleep(.25)
+			time.sleep(.25)
 			# break
 
