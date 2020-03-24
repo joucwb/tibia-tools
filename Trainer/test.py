@@ -7,6 +7,23 @@ import settings
 from win32api import GetSystemMetrics
 from PIL import Image
 
+def get_pixels_mana(SS_HOTKEY, SS_DIRPATH):
+	mana = os.path.join(os.path.dirname(__file__), 'imgs', 'mana_bar.png') # Find mana_bar.png path
+	mana = cv2.imread(mana,1) # Read mana_bar.png (rgb)
+	pyautogui.press(SS_HOTKEY) # Screenshot
+	time.sleep(.25)
+	mana_path = settings.get_latest_image(SS_DIRPATH, valid_extensions='png') # Latest ss path
+	img_rgb = cv2.imread(mana_path,1)
+	res = cv2.matchTemplate(img_rgb,mana,cv2.TM_CCOEFF_NORMED) # Matching
+	_, _, min_loc, max_loc = cv2.minMaxLoc(res) 
+	x_min, x_max, y_min, y_max = max_loc[0], max_loc[0]+mana.shape[1],\
+								 max_loc[1], max_loc[1]+mana.shape[0]
+
+	pixels_mana = img_rgb[round((y_min+y_max)/2),round((x_min+x_max)/2)] # Mana Pixels
+	return pixels_mana
+
+def counting_pixels():
+	
 
 def mana_pixels():
 

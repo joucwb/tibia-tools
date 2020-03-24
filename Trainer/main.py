@@ -5,6 +5,7 @@ import time
 import numpy as np
 import healing
 import settings
+import test
 
 if __name__ == '__main__':
     SS_HOTKEY = "f12"
@@ -19,6 +20,8 @@ if __name__ == '__main__':
     while True:
         print('Cycle:', count)
         settings.get_tibia_active()
+        test.get_pixels_mana(SS_HOTKEY,SS_DIRPATH)
+        time.sleep(500)
         healing.ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY)
         # print('\n')
         healing.eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY)
