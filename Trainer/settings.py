@@ -8,7 +8,7 @@ import pygetwindow as gw
 
 
 def get_tibia_active():
-	gw.getAllTitles()
+	# gw.getAllTitles()
 	tibia = gw.getWindowsWithTitle('Tibia -')
 	print(tibia)
 	tibia[0].activate()
@@ -67,6 +67,7 @@ def is_visible(template, SS_DIRPATH, SS_HOTKEY, keep_diff=False):
 		w, h = template.shape[::-1]
 		for pt in zip(*loc[::-1]):
 			cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
+		print(cv2.rectangle)
 		cv2.imwrite('diff.png',img_rgb)
 
 	os.remove(pic_path)

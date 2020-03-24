@@ -90,3 +90,4 @@ def eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
 			# time.sleep(.25)
 			# break
 
+
