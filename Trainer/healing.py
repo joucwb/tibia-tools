@@ -5,16 +5,9 @@ import time
 import numpy as np
 import settings
 
-# class Healing:
-
-# 	# def __init__(self, SS_DIRPATH, SS_HOTKEY):
-# 	# 	self.dirr = SS_DIRPATH
-# 	# 	self.ss_screenshot = SS_HOTKEY
-
-
-def life_ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
+def ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 	'''
-	Check if there's some life ring equipped
+	Check if there's some ring equipped
 	If so, equip it
 		@params
 		SS_DIRPATH: Tibia screenshots path folder
@@ -24,7 +17,9 @@ def life_ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 		@return
 		void
 	'''
-	template = cv2.imread('D:/Documents/git/tibia-tools/imgs/empty_ring.png',0)
+	img = os.path.join(os.path.dirname(__file__), 'imgs', 'empty_ring.png')
+	# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/empty_ring.png',0)
+	template = cv2.imread(img,0)
 	tmp = settings.is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
 	x = []
 	for item in tmp:
@@ -38,7 +33,6 @@ def life_ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 		# break
 
 
-
 def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 	'''
 	Check if there's some some soft boots equipped
@@ -46,12 +40,15 @@ def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 		@params
 		SS_DIRPATH: Tibia screenshots path folder
 		SS_HOTKEY: screenshot hotkey
-		RING_HOTKEY: hotkey to equip ring
+		RING_HOTKEY: hotkey to equip boots
 
 		@return
 		void
 	'''
-	template = cv2.imread('D:/Documents/git/tibia-tools/imgs/soft_boots.png',0)
+
+	img = os.path.join(os.path.dirname(__file__), 'imgs', 'soft_boots.png')
+	# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/soft_boots.png',0)
+	template = cv2.imread(img,0)
 	tmp = settings.is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
 	x = []
 	for item in tmp:
@@ -72,22 +69,24 @@ def eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
 		@params
 		SS_DIRPATH: Tibia screenshots path folder
 		SS_HOTKEY: screenshot hotkey
-		RING_HOTKEY: hotkey to equip ring
+		RING_HOTKEY: hotkey to eat food
 
 		@return
 		void
 	'''
-	template = cv2.imread('D:/Documents/git/tibia-tools/imgs/hungry.png',0)
+	img = os.path.join(os.path.dirname(__file__), 'imgs', 'hungry.png')
+	# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/hungry.png',0)
+	template = cv2.imread(img,0)
 	tmp = settings.is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
 	x = []
 	for item in tmp:
 		x.extend(item)
 	if x == []:
 		print('Not hungry!')
-		pyautogui.press('r') ############# TEST ##############
+		pyautogui.press('f4') ############# TEST ##############
 	else:
 		for _ in range(3):
 			pyautogui.press(FOOD_HOTKEY)
-			time.sleep(.25)
+			# time.sleep(.25)
 			# break
 

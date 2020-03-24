@@ -3,6 +3,15 @@ import cv2
 import pyautogui
 import time
 import numpy as np
+import pygetwindow as gw
+
+
+
+def get_tibia_active():
+	gw.getAllTitles()
+	tibia = gw.getWindowsWithTitle('Tibia -')
+	print(tibia)
+	tibia[0].activate()
 
 
 def get_latest_image(SS_DIRPATH, valid_extensions=('jpg','jpeg','png')):
