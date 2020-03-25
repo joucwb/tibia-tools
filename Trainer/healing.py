@@ -5,7 +5,14 @@ import time
 import numpy as np
 import settings
 
-def ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
+
+class Healing:
+
+	def __init__(self, SS_DIRPATH, SS_HOTKEY):
+		self.dir_path = SS_DIRPATH
+		self.htk = SS_HOTKEY
+
+	def ring(self, SS_DIRPATH, htk, RING_HOTKEY):
 	'''
 	Check if there's some ring equipped
 	If so, equip it
@@ -20,7 +27,7 @@ def ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 	img = os.path.join(os.path.dirname(__file__), 'imgs', 'empty_ring.png')
 	# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/empty_ring.png',0)
 	template = cv2.imread(img,0)
-	tmp = settings.is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
+	tmp = settings.is_visible(template, dir_path, htk, False)
 	x = []
 	for item in tmp:
 		x.extend(item)
@@ -32,7 +39,7 @@ def ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 		# break
 
 
-def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
+def soft_boots(self, SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 	'''
 	Check if there's some some soft boots equipped
 	If so, equip it
@@ -48,7 +55,7 @@ def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 	img = os.path.join(os.path.dirname(__file__), 'imgs', 'soft_boots.png')
 	# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/soft_boots.png',0)
 	template = cv2.imread(img,0)
-	tmp = settings.is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
+	tmp = settings.is_visible(template, dir_path, htk, False)
 	x = []
 	for item in tmp:
 		x.extend(item)
@@ -60,7 +67,7 @@ def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 		# break
 
 
-def eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
+def eat_food(self, SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
 	'''
 	Check if you are hungry
 	If so, eats food
@@ -75,7 +82,7 @@ def eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
 	img = os.path.join(os.path.dirname(__file__), 'imgs', 'hungry.png')
 	# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/hungry.png',0)
 	template = cv2.imread(img,0)
-	tmp = settings.is_visible(template, SS_DIRPATH, SS_HOTKEY, False)
+	tmp = settings.is_visible(template, dir_path, htk, False)
 	x = []
 	for item in tmp:
 		x.extend(item)

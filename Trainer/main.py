@@ -17,15 +17,12 @@ if __name__ == '__main__':
     CYCLE_TIME = 60
 
 
-    time.sleep(1)
+    time.sleep(.5)
     settings.get_tibia_active()
     time.sleep(.5)
     x_min, x_max, y_min, y_max, mana_full = mana.get_mana_loc(SS_HOTKEY,SS_DIRPATH) # mana coordinates
-
-    
     count = 1
     cycle_break = 0
-    time.sleep(2)
     pyautogui.press(RUNE_HOTKEY)
     while True:
         settings.get_tibia_active()
@@ -38,6 +35,7 @@ if __name__ == '__main__':
         if percentage_mana == 100:
             cycle_break+=1
             print('CYCLE BREAK + 1')
+            print('- DIDN\'T RUNED')
         elif percentage_mana > 50:
             pyautogui.press(RUNE_HOTKEY)
             print('- RUNED')

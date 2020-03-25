@@ -50,6 +50,3 @@ def counting_pixels(x_min, x_max, y_min, y_max, SS_HOTKEY, SS_DIRPATH):
 	os.remove('tmp.png')
 	os.remove(pic_path)
 	return blue
-
-def percentage(mana_full, pixels_mana):
-	return pixels_mana*100/mana_full
