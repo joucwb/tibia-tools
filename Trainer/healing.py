@@ -25,8 +25,7 @@ def ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY):
 	for item in tmp:
 		x.extend(item)
 	if x == []:
-		print('Ring slot not empty!')
-		pyautogui.press('f7') ############# TEST ##############
+		print('- DIDN\'T PULL UP RING: SLOT NOT EMPTY!')
 	else:
 		print('- RING EQUIPPED')
 		pyautogui.press(RING_HOTKEY)
@@ -54,10 +53,9 @@ def soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY):
 	for item in tmp:
 		x.extend(item)
 	if x == []:
-		print('Boots slot not empty!')
-		pyautogui.press('f7') ############# TEST ##############
+		print('- DIDN\'T EQUIP BOOTS: SLOT NOT EMPTY!')
 	else:
-		print('SOFT EQUIPPED')
+		print('- SOFT EQUIPPED')
 		pyautogui.press(SOFT_HOTKEY)
 		# break
 
@@ -82,11 +80,11 @@ def eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY):
 	for item in tmp:
 		x.extend(item)
 	if x == []:
-		print('Not hungry!')
-		pyautogui.press('f4') ############# TEST ##############
+		print('- DIDN\'T EAT FOOD: NOT HUNGRY!')
 	else:
 		for _ in range(3):
 			pyautogui.press(FOOD_HOTKEY)
+			print('- FOOD EATEN')
 			# time.sleep(.25)
 			# break
 

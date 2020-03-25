@@ -5,7 +5,7 @@ import time
 import numpy as np
 import healing
 import settings
-import test
+import mana
 
 if __name__ == '__main__':
     SS_HOTKEY = "f12"
@@ -13,15 +13,36 @@ if __name__ == '__main__':
     RING_HOTKEY = "f8"
     FOOD_HOTKEY = "f10"
     SOFT_HOTKEY = "f9"
-    CYCLE_TIME = 30
-    time.sleep(1)
-    count = 1
+    RUNE_HOTKEY = "0"
+    CYCLE_TIME = 60
 
+
+    time.sleep(1)
+    settings.get_tibia_active()
+    time.sleep(.5)
+    x_min, x_max, y_min, y_max, mana_full = mana.get_mana_loc(SS_HOTKEY,SS_DIRPATH) # mana coordinates
+
+    
+    count = 1
+    cycle_break = 0
+    time.sleep(2)
+    pyautogui.press(RUNE_HOTKEY)
     while True:
-        print('Cycle:', count)
         settings.get_tibia_active()
-        test.get_pixels_mana(SS_HOTKEY,SS_DIRPATH)
-        time.sleep(500)
+        print('Cycle:', count)
+        pixels_mana = mana.counting_pixels(x_min, x_max, y_min, y_max, SS_HOTKEY, SS_DIRPATH)
+        print('MANA PIXELS:', pixels_mana)
+        percentage_mana = round(mana.percentage(mana_full, pixels_mana))
+        print('PERCENTAGE MANA:', percentage_mana)
+        time.sleep(.5)
+        if percentage_mana == 100:
+            cycle_break+=1
+            print('CYCLE BREAK + 1')
+        elif percentage_mana > 50:
+            pyautogui.press(RUNE_HOTKEY)
+            print('- RUNED')
+        else: print('- DIDN\'T RUNED')
+
         healing.ring(SS_DIRPATH, SS_HOTKEY, RING_HOTKEY)
         # print('\n')
         healing.eat_food(SS_DIRPATH, SS_HOTKEY, FOOD_HOTKEY)
@@ -29,4 +50,6 @@ if __name__ == '__main__':
         healing.soft_boots(SS_DIRPATH, SS_HOTKEY, SOFT_HOTKEY)
         count+=1
         print('#'*30)
+        if cycle_break == 5:
+            break
         time.sleep(CYCLE_TIME)
