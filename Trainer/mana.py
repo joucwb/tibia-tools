@@ -7,7 +7,7 @@ import settings
 from win32api import GetSystemMetrics
 from PIL import Image
 
-def get_pixels_mana(SS_HOTKEY, SS_DIRPATH):
+def get_mana_loc(SS_HOTKEY, SS_DIRPATH):
 	mana = os.path.join(os.path.dirname(__file__), 'imgs', 'mana_bar.png') # Find mana_bar.png path
 	mana = cv2.imread(mana,1) # Read mana_bar.png (rgb)
 	pyautogui.press(SS_HOTKEY) # Screenshot
@@ -19,11 +19,43 @@ def get_pixels_mana(SS_HOTKEY, SS_DIRPATH):
 	x_min, x_max, y_min, y_max = max_loc[0], max_loc[0]+mana.shape[1],\
 								 max_loc[1], max_loc[1]+mana.shape[0]
 
-	pixels_mana = img_rgb[round((y_min+y_max)/2),round((x_min+x_max)/2)] # Mana Pixels
-	return pixels_mana
+	loc = [x_min, x_max, y_min, y_max]
+	pixels_mana = img_rgb[round((y_min+y_max)/2), round((x_min+x_max)/2)]
+	crop_img = img_rgb[y_min:y_max,x_min:x_max]
+	a = cv2.imwrite('tmp.png', crop_img)
+	im = Image.open('tmp.png')
+	blue = 0
+	for pixel in im.getdata():
+		print(pixel)
+		if pixel == (83, 80, 218):
+			blue+=1
+	os.remove('tmp.png')
+	print(blue)
 
-def counting_pixels():
+
+def get_pixels_mana(image, x_min, x_max, y_min, y_max):
+	return image[round((y_min+y_max)/2), round((x_min+x_max)/2)] # Mana Pixels
+	 # pixels_mana
+
+def counting_pixels(SS_HOTKEY):
+	pyautogui.press(SS_HOTKEY) # Screenshot
+	time.sleep(.25)
+	pic_path = settings.get_latest_image(SS_DIRPATH, valid_extensions='png') 
+	img_rgb = cv2.imread(pic_path,1)
+	crop_img = img_rgb[y_min:y_max,x_min:x_max]
+	a = cv2.imwrite(crop_img)
+	im = Image.open(a)
+	for pixel in im.getdata():
+		# time.sleep(10)
+		if pixel == (83, 80, 218):
+			blue+=1
+	print(blue)
 	
+
+	mana = os.path.join(os.path.dirname(__file__), 'imgs', 'mana_bar.png') # Find mana_bar.png path
+	mana = cv2.imread(mana,1) # Read mana_bar.png (rgb)
+	return
+
 
 def mana_pixels():
 
@@ -38,7 +70,7 @@ def mana_pixels():
 	min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
 	x_min, x_max, y_min, y_max = max_loc[0], max_loc[0]+template.shape[1], max_loc[1], max_loc[1]+template.shape[0]
 	print(x_min, x_max, y_min, y_max)
-	pixels_mana = img_rgb[round((y_min+y_max)/2),round((x_min+x_max)/2)]
+	pixels_mana = img_rgb[round((y_min+y_max)/2), round((x_min+x_max)/2)]
 	print(pixels_mana)
 	crop_img = img_rgb[y_min:y_max,x_min:x_max]
 	a = cv2.imwrite('teste.png', crop_img)
@@ -114,4 +146,6 @@ if __name__ == '__main__':
 	print("Height =", GetSystemMetrics(1))
 	time.sleep(1)
 	count = 1
-	mana_pixels()
+	mana_loc = get_mana_loc(SS_HOTKEY, SS_DIRPATH)
+	# mana_pixels = get_pixels_mana(mana_loc)
+	print(type(mana_loc))
