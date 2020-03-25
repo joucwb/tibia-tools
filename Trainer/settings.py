@@ -8,9 +8,7 @@ import pygetwindow as gw
 
 
 def get_tibia_active():
-	# gw.getAllTitles()
 	tibia = gw.getWindowsWithTitle('Tibia -')
-	print(tibia)
 	tibia[0].activate()
 
 
