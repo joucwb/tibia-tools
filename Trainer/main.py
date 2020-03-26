@@ -13,7 +13,7 @@ if __name__ == '__main__':
         SS_DIRPATH = "D:/Games/Tibia/packages/Tibia/screenshots/"
         RING_HOTKEY = "f8"
         FOOD_HOTKEY = "f10"
-        SOFT_HOTKEY = "f9"
+        SOFT_HOTKEY = "-"
         RUNE_HOTKEY = "0"
         CYCLE_TIME = 60
         time.sleep(.5)
@@ -46,6 +46,7 @@ if __name__ == '__main__':
             else: print('- DIDN\'T RUNED')
             settings.get_tibia_active()
             healing = Healing(SS_DIRPATH, SS_HOTKEY)
+            
             Healing(SS_DIRPATH, SS_HOTKEY).ring(RING_HOTKEY)
             Healing(SS_DIRPATH, SS_HOTKEY).eat_food(FOOD_HOTKEY)
             settings.get_tibia_active()

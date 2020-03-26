@@ -40,6 +40,14 @@ def get_latest_image(SS_DIRPATH, valid_extensions=('jpg','jpeg','png')):
 
 	return max(valid_files, key=os.path.getmtime) 
 
+
+def take_screenshot(SS_HOTKEY):
+	pyautogui.press(SS_HOTKEY)
+
+def del_screenshot(pic_path):
+	os.remove(pic_path)
+
+
 def is_visible(template, SS_DIRPATH, SS_HOTKEY, keep_diff=False):
 	'''
 	Check if the image file is on the screen.
