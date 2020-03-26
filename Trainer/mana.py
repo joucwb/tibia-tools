@@ -15,6 +15,16 @@ class Mana:
 
 
 	def get_mana_loc(self):
+		'''
+		Get mana par screen position and count mana bar pixels (HAS to be full)
+			@params
+			null
+
+			@return
+			x_min, x_man: x-coordinates position
+			y_min, y_max: y-coordinates position
+			blue: mana bar pixels (quantity)
+		'''
 		mana = os.path.join(os.path.dirname(__file__), 'imgs', 'mana_bar.png') # Find mana_bar.png path
 		mana = cv2.imread(mana,1) # Read mana_bar.png (rgb)
 		pyautogui.press(self.htk) # Screenshot
@@ -25,10 +35,6 @@ class Mana:
 		_, _, min_loc, max_loc = cv2.minMaxLoc(res) 
 		x_min, x_max, y_min, y_max = max_loc[0], max_loc[0]+mana.shape[1],\
 									 max_loc[1], max_loc[1]+mana.shape[0]
-
-		# loc = [x_min, x_max, y_min, y_max]
-		# print(loc)
-		
 		crop_img = img_rgb[y_min:y_max,x_min:x_max]
 		_ = cv2.imwrite('tmp.png', crop_img)
 		im = Image.open('tmp.png')
@@ -43,6 +49,14 @@ class Mana:
 
 
 	def counting_pixels(self, x_min, x_max, y_min, y_max):
+		'''
+		Count mana bar pixels
+			@params
+			x, y coordinates (see get_mana_loc method)
+
+			@return
+			blue: mana bar pixels (quantity)
+		'''
 		pyautogui.press(self.htk)
 		time.sleep(1)
 		pic_path = settings.get_latest_image(self.dir_path, valid_extensions='png') 
@@ -59,6 +73,15 @@ class Mana:
 		return blue
 
 	def percentage(self, mana_full, pixels_mana):
+		'''
+		Calculate percentage of mana
+			@params
+			mana_full: number of pixels mana full
+			pixels_mana: number of pixels mana
+
+			@return
+			how many percentage of mana full the character has
+		'''
 		try:
 			return pixels_mana*100/mana_full
 		except ZeroDivisionError as error:

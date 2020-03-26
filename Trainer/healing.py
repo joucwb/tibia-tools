@@ -16,16 +16,12 @@ class Healing:
 		Check if there's some ring equipped
 		If so, equip it
 			@params
-			SS_DIRPATH: Tibia screenshots path folder
-			SS_HOTKEY: screenshot hotkey
 			RING_HOTKEY: hotkey to equip ring
 
 			@return
 			void
 		'''
-
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'empty_ring.png')
-		# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/empty_ring.png',0)
 		template = cv2.imread(img,0)
 		tmp = settings.is_visible(template, self.dir_path, self.htk, False)
 		x = []
@@ -36,24 +32,20 @@ class Healing:
 		else:
 			print('- RING EQUIPPED')
 			pyautogui.press(RING_HOTKEY)
-			# break
 
 
 	def soft_boots(self, SOFT_HOTKEY):
 		'''
-		Check if there's some some soft boots equipped
+		Check if there's some soft boots equipped
 		If so, equip it
 			@params
-			SS_DIRPATH: Tibia screenshots path folder
-			SS_HOTKEY: screenshot hotkey
-			RING_HOTKEY: hotkey to equip boots
+			SOFT_HOTKEY: hotkey to equip boots
 
 			@return
 			void
 		'''
 
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'soft_boots.png')
-		# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/soft_boots.png',0)
 		template = cv2.imread(img,0)
 		tmp = settings.is_visible(template, self.dir_path, self.htk, False)
 		x = []
@@ -64,17 +56,14 @@ class Healing:
 		else:
 			print('- SOFT EQUIPPED')
 			pyautogui.press(SOFT_HOTKEY)
-			# break
 
 
 	def eat_food(self, FOOD_HOTKEY):
 		'''
-		Check if you are hungry
+		Check if the character is hungry
 		If so, eats food
 			@params
-			SS_DIRPATH: Tibia screenshots path folder
-			SS_HOTKEY: screenshot hotkey
-			RING_HOTKEY: hotkey to eat food
+			FOOD_HOTKEY: hotkey to eat food
 
 			@return
 			void
@@ -89,6 +78,6 @@ class Healing:
 		if x == []:
 			print('- DIDN\'T EAT FOOD: NOT HUNGRY!')
 		else:
+			print('- FOOD EATEN')
 			for _ in range(5):
 				pyautogui.press(FOOD_HOTKEY)
-				print('- FOOD EATEN')

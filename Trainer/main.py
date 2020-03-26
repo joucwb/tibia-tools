@@ -45,12 +45,14 @@ if __name__ == '__main__':
                 print('- RUNED')
             else: print('- DIDN\'T RUNED')
             settings.get_tibia_active()
+            healing = Healing(SS_DIRPATH, SS_HOTKEY)
             Healing(SS_DIRPATH, SS_HOTKEY).ring(RING_HOTKEY)
             Healing(SS_DIRPATH, SS_HOTKEY).eat_food(FOOD_HOTKEY)
             settings.get_tibia_active()
             Healing(SS_DIRPATH, SS_HOTKEY).soft_boots(SOFT_HOTKEY)
             count+=1
             print('#'*30)
+            print('  TECLE CRTL+C PARA CANCELAR  ')
             if cycle_break == 5:
                 print('ATENÇÃO: SEM BLANK RUNE OU SOUL POINTS!!!!')
                 break

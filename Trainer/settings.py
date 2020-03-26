@@ -8,6 +8,14 @@ import pygetwindow as gw
 
 
 def get_tibia_active():
+	'''
+	Get Tibia tab
+		@params
+		null
+
+		@return
+		void
+	'''
 	tibia = gw.getWindowsWithTitle('Tibia -')
 	tibia[0].activate()
 
@@ -53,7 +61,6 @@ def is_visible(template, SS_DIRPATH, SS_HOTKEY, keep_diff=False):
 	img_rgb = cv2.imread(pic_path)
 	# Changing: rgb -> grayscale
 	img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-
 	# Looking for the template
 	res = cv2.matchTemplate(img_gray,template,cv2.TM_CCOEFF_NORMED)
 
