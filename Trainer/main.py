@@ -32,7 +32,7 @@ if __name__ == '__main__':
 		settings.idle(.5)
 		settings.get_tibia_active()
 		settings.take_screenshot(SS_HOTKEY) ########## SS
-		settings.idle(1)
+		settings.idle(1.5) #cd to del
 		mana_full_path = settings.get_latest_image(SS_DIRPATH, valid_extensions='png')
 		x_min, x_max, y_min, y_max, mana_full = Mana(SS_DIRPATH, mana_full_path)\
 		.get_mana_loc() 
@@ -43,8 +43,9 @@ if __name__ == '__main__':
 		pyautogui.press(RUNE_HOTKEY) # first rune
 		while True:
 			settings.get_tibia_active()
+			settings.idle(.5)
 			settings.take_screenshot(SS_HOTKEY)
-			settings.idle(1)
+			settings.idle(1.5)
 			cycle_pic = settings.get_latest_image(SS_DIRPATH, valid_extensions='png')
 
 			print('#'*30)
@@ -64,8 +65,8 @@ if __name__ == '__main__':
 			elif percentage_mana >= 50:
 				settings.get_tibia_active()
 				for _ in range(RUNES_PER_CYCLE):
-					settings.idle(2) # rune cd
 					pyautogui.press(RUNE_HOTKEY)
+					settings.idle(2) # rune cd
 				print('- RUNED')
 			else: print('- DIDN\'T RUNED')
 

@@ -1,56 +1,53 @@
+import os
 from tkinter import *
 from tkinter import Tk
 from tkinter.filedialog import askdirectory
+from PIL import ImageTk, Image
 
 class Application:
     def __init__(self, master=None):
         self.fontePadrao = ("Arial", "10")
-        self.primeiroContainer = Frame(master)
-        self.primeiroContainer["pady"] = 50
-        self.primeiroContainer.pack()
   
-        self.segundoContainer = Frame(master)
-        self.segundoContainer["padx"] = 50
-        self.segundoContainer.pack()
-  
-        self.terceiroContainer = Frame(master)
-        self.terceiroContainer["padx"] = 50
-        self.terceiroContainer.pack()
-  
-        self.quartoContainer = Frame(master)
-        self.quartoContainer["pady"] = 20	
-        self.quartoContainer.pack()
-  
-        self.titulo = Label(self.primeiroContainer, text="Dados do usuário")
+
+        self.img = ImageTk.PhotoImage(Image.open(os.path.join(os.path.dirname(__file__), 'imgs', 'img.png')))
+        img_label = Button(image=self.img)
+        img_label.grid(row=0, column=0)
+
+        self.titulo = Label(text="HOTKEYS")
         self.titulo["font"] = ("Arial", "10", "bold")
-        self.titulo.pack()
+        self.titulo.grid(row=1, column=0, padx=60)
+
+        self.hotkeys = Label(text="SCREENSHOT")
+        self.hotkeys["font"] = ("Arial", "10", "bold")
+        self.hotkeys.grid(row=3, column=3)
+
+        # self.space = Label(text='            ')
+        # self.space.grid(row=0, column=1)
   
-        self.nomeLabel = Label(self.segundoContainer,text="Nome", font=self.fontePadrao)
-        self.nomeLabel.pack(side=LEFT)
+        self.foodLabel = Label(text="Food: ", font=self.fontePadrao, anchor="e")
+        self.foodLabel.grid(row=3, column=0, columnspan=4)
   
-        self.nome = Entry(self.segundoContainer)
-        self.nome["width"] = 30
-        self.nome["font"] = self.fontePadrao
-        self.nome.pack(side=LEFT)
+        self.food = Entry()
+        self.food["width"] = 10
+        self.food["font"] = self.fontePadrao
+        self.food.grid(row=2, column=1)
   
-        self.senhaLabel = Label(self.terceiroContainer, text="Senha", font=self.fontePadrao)
-        self.senhaLabel.pack(side=LEFT)
+        self.softLabel = Label(text="Senha ", font=self.fontePadrao)
+        self.softLabel.grid(row=1, column=3)
   
-        self.senha = Entry(self.terceiroContainer)
-        self.senha["width"] = 30
-        self.senha["font"] = self.fontePadrao
-        self.senha["show"] = "*"
-        self.senha.pack(side=LEFT)
+        self.soft = Entry()
+        self.soft["width"] = 10
+        self.soft["font"] = self.fontePadrao
+        self.soft.grid(row=1, column=4)
   
-        self.autenticar = Button(self.quartoContainer)
+        self.autenticar = Button()
         self.autenticar["text"] = "Autenticar"
         self.autenticar["font"] = ("Calibri", "8")
         self.autenticar["width"] = 12
         self.autenticar["command"] = self.verificaSenha
-        self.autenticar.pack()
   
-        self.mensagem = Label(self.quartoContainer, text="", font=self.fontePadrao)
-        self.mensagem.pack()
+        self.mensagem = Label(text="", font=self.fontePadrao)
+        self.mensagem.grid(row=0, column=0)
   
     #Método verificar senha
     def verificaSenha(self):
@@ -66,5 +63,8 @@ class Application:
   
 root = Tk()
 Application(root)
-root.title('Magic Level Machine')
+root.title('Penis Alado')
+root.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'ico.ico'))
+
+
 root.mainloop()
