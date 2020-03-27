@@ -20,6 +20,7 @@ if __name__ == '__main__':
 		SOFT_HOTKEY = "-"
 		RUNE_HOTKEY = "0"
 		CYCLE_TIME = 60
+		RUNES_PER_CYCLE = 2
 		###############
 		###############
 		cycle_count = 1
@@ -33,18 +34,17 @@ if __name__ == '__main__':
 		settings.take_screenshot(SS_HOTKEY) ########## SS
 		settings.idle(1)
 		mana_full_path = settings.get_latest_image(SS_DIRPATH, valid_extensions='png')
-		# mana_obj = Mana(DIR_PATH, mana_path)
 		x_min, x_max, y_min, y_max, mana_full = Mana(SS_DIRPATH, mana_full_path)\
 		.get_mana_loc() 
-
+		settings.del_screenshot(mana_full_path)
 		'''
 		main loop
 		'''
 		pyautogui.press(RUNE_HOTKEY) # first rune
 		while True:
 			settings.get_tibia_active()
-			settings.idle(.25)
 			settings.take_screenshot(SS_HOTKEY)
+			settings.idle(1)
 			cycle_pic = settings.get_latest_image(SS_DIRPATH, valid_extensions='png')
 
 			print('#'*30)
@@ -57,25 +57,26 @@ if __name__ == '__main__':
 				percentage(mana_full, pixels_mana))
 			print('PERCENTAGE MANA:', percentage_mana)
 
-			settings.idle(.5)
-
 			if percentage_mana == 100:
 				cycle_break+=1
 				print('CYCLE BREAK + 1')
 				print('- DIDN\'T RUNED')
-			elif percentage_mana > 50:
+			elif percentage_mana >= 50:
 				settings.get_tibia_active()
-				pyautogui.press(RUNE_HOTKEY)
+				for _ in range(RUNES_PER_CYCLE):
+					settings.idle(2) # rune cd
+					pyautogui.press(RUNE_HOTKEY)
 				print('- RUNED')
 			else: print('- DIDN\'T RUNED')
 
-			healing = Healing(SS_DIRPATH, cycle_pic)
-			Healing(SS_DIRPATH, cycle_pic).ring(RING_HOTKEY)
-			Healing(SS_DIRPATH, cycle_pic).eat_food(FOOD_HOTKEY)
-			Healing(SS_DIRPATH, cycle_pic).soft_boots(SOFT_HOTKEY)
+			healing = Healing(cycle_pic)
+			healing.ring(RING_HOTKEY)
+			settings.idle(.5)
+			healing.eat_food(FOOD_HOTKEY)
+			settings.idle(.5)
+			healing.soft_boots(SOFT_HOTKEY)
 
-			settings.increment(cycle_count)
-			os.remove(cycle_pic)
+			
 
 			print('#'*30)
 			print('  TECLE CRTL+C PARA CANCELAR  ')
@@ -83,7 +84,10 @@ if __name__ == '__main__':
 			if cycle_break == 5:
 				print('ATENÇÃO: SEM BLANK RUNE OU SOUL POINTS!!!!')
 				break
-				settings.idle(CYCLE_TIME)
+
+			cycle_count = settings.increment(cycle_count)
+			settings.del_screenshot(cycle_pic)
+			settings.idle(CYCLE_TIME)
 
 	except KeyboardInterrupt:
 		print('#'*10+'  CANCELADO  '+'#'*10)

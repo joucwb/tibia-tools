@@ -85,7 +85,7 @@ def increment(number):
 	'''
 	return number+1
 
-def is_visible(template, SS_DIRPATH, pic_path, keep_diff=False):
+def is_visible(template, pic_path, keep_diff=False):
 	'''
 	Check if the image file is on the screen.
 	After check, remove the png file.

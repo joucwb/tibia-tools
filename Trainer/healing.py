@@ -7,10 +7,8 @@ import settings
 
 
 class Healing:
-	def __init__(self, SS_DIRPATH, pic_path):
-		self.dir_path = SS_DIRPATH
+	def __init__(self, pic_path):
 		self.pic_path = pic_path
-		# self.htk = SS_HOTKEY
 
 	def ring(self, RING_HOTKEY):
 		'''
@@ -24,14 +22,14 @@ class Healing:
 		'''
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'empty_ring.png')
 		template = cv2.imread(img,0)
-		tmp = settings.is_visible(template, self.dir_path, self.pic_path, False)
+		tmp = settings.is_visible(template, self.pic_path, False)
 		x = []
 		for item in tmp:
 			x.extend(item)
 		if x == []:
 			print('- DIDN\'T PULL UP RING: SLOT NOT EMPTY!')
 		else:
-			print('- RING EQUIPPED')
+			print('- RING NOT FOUND! TRYING TO EQUIP')
 			settings.get_tibia_active()
 			pyautogui.press(RING_HOTKEY)
 
@@ -49,7 +47,7 @@ class Healing:
 
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'soft_boots.png')
 		template = cv2.imread(img,0)
-		tmp = settings.is_visible(template, self.dir_path, self.pic_path, False)
+		tmp = settings.is_visible(template, self.pic_path, False)
 		x = []
 		for item in tmp:
 			x.extend(item)
@@ -72,9 +70,8 @@ class Healing:
 			void
 		'''
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'hungry.png')
-		# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/hungry.png',0)
 		template = cv2.imread(img,0)
-		tmp = settings.is_visible(template, self.dir_path, self.pic_path, False)
+		tmp = settings.is_visible(template, self.pic_path, False)
 		x = []
 		for item in tmp:
 			x.extend(item)
