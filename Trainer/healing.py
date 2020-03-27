@@ -2,14 +2,15 @@ import os
 import cv2
 import pyautogui
 import time
-import numpy as np
+# import numpy as np
 import settings
 
 
 class Healing:
-	def __init__(self, SS_DIRPATH, SS_HOTKEY):
+	def __init__(self, SS_DIRPATH, pic_path):
 		self.dir_path = SS_DIRPATH
-		self.htk = SS_HOTKEY
+		self.pic_path = pic_path
+		# self.htk = SS_HOTKEY
 
 	def ring(self, RING_HOTKEY):
 		'''
@@ -23,7 +24,7 @@ class Healing:
 		'''
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'empty_ring.png')
 		template = cv2.imread(img,0)
-		tmp = settings.is_visible(template, self.dir_path, self.htk, False)
+		tmp = settings.is_visible(template, self.dir_path, self.pic_path, False)
 		x = []
 		for item in tmp:
 			x.extend(item)
@@ -31,6 +32,7 @@ class Healing:
 			print('- DIDN\'T PULL UP RING: SLOT NOT EMPTY!')
 		else:
 			print('- RING EQUIPPED')
+			settings.get_tibia_active()
 			pyautogui.press(RING_HOTKEY)
 
 
@@ -47,7 +49,7 @@ class Healing:
 
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'soft_boots.png')
 		template = cv2.imread(img,0)
-		tmp = settings.is_visible(template, self.dir_path, self.htk, False)
+		tmp = settings.is_visible(template, self.dir_path, self.pic_path, False)
 		x = []
 		for item in tmp:
 			x.extend(item)
@@ -55,6 +57,7 @@ class Healing:
 			print('- DIDN\'T EQUIP BOOTS: SLOT NOT EMPTY!')
 		else:
 			print('- SOFT EQUIPPED')
+			settings.get_tibia_active()
 			pyautogui.press(SOFT_HOTKEY)
 
 
@@ -71,13 +74,14 @@ class Healing:
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'hungry.png')
 		# template = cv2.imread('D:/Documents/git/tibia-tools/imgs/hungry.png',0)
 		template = cv2.imread(img,0)
-		tmp = settings.is_visible(template, self.dir_path, self.htk, False)
+		tmp = settings.is_visible(template, self.dir_path, self.pic_path, False)
 		x = []
 		for item in tmp:
 			x.extend(item)
 		if x == []:
 			print('- DIDN\'T EAT FOOD: NOT HUNGRY!')
 		else:
+			settings.get_tibia_active()
 			print('- FOOD EATEN')
 			for _ in range(5):
 				pyautogui.press(FOOD_HOTKEY)

@@ -1,3 +1,18 @@
+LIMITAÇÕES
 • desabilitar etiquetas
 • status bar ATIVO
 • começar com mana CHEIA
+• Ajeitar soft boots
+
+
+
+
+requirements:
+os
+cv2
+win32api
+pyautogui
+time
+numpy
+pygetwindow
+PIL

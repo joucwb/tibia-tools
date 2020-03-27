@@ -42,13 +42,50 @@ def get_latest_image(SS_DIRPATH, valid_extensions=('jpg','jpeg','png')):
 
 
 def take_screenshot(SS_HOTKEY):
+	'''
+	Take screenshot
+		@params
+		SS_HOTKEY: screenshot hotkey
+
+		@return
+		number + 1
+	'''
 	pyautogui.press(SS_HOTKEY)
 
 def del_screenshot(pic_path):
+	'''
+	Delete screenshot
+		@params
+		number: screenshot path
+
+		@return
+		void
+	'''
 	os.remove(pic_path)
 
+def idle(number):
+	'''
+	Sleep 
+		@params
+		number: seconds
 
-def is_visible(template, SS_DIRPATH, SS_HOTKEY, keep_diff=False):
+		@return
+		void
+	'''
+	time.sleep(number)
+
+def increment(number):
+	'''
+	Increment 1 to a number
+		@params
+		number: any int
+
+		@return
+		number + 1
+	'''
+	return number+1
+
+def is_visible(template, SS_DIRPATH, pic_path, keep_diff=False):
 	'''
 	Check if the image file is on the screen.
 	After check, remove the png file.
@@ -61,10 +98,10 @@ def is_visible(template, SS_DIRPATH, SS_HOTKEY, keep_diff=False):
 		@return
 		tuple(coordinates found)
 	'''
-	pyautogui.press(SS_HOTKEY) # Take screenshot
-	time.sleep(1) 
+	# pyautogui.press(SS_HOTKEY) # Take screenshot
+	# time.sleep(1) 
 	# Get the latest snapshot on the imgpath dir
-	pic_path = get_latest_image(SS_DIRPATH, valid_extensions='png') 
+	# pic_path = get_latest_image(SS_DIRPATH, valid_extensions='png') 
 	# Read the snapshot
 	img_rgb = cv2.imread(pic_path)
 	# Changing: rgb -> grayscale
@@ -83,6 +120,5 @@ def is_visible(template, SS_DIRPATH, SS_HOTKEY, keep_diff=False):
 		print(cv2.rectangle)
 		cv2.imwrite('diff.png',img_rgb)
 
-	os.remove(pic_path)
+	# os.remove(pic_path)
 	return loc
-
