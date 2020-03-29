@@ -8,15 +8,16 @@ from main import Main
 import webbrowser
 
 class GUI:
-    def __init__(self, master=None):
+    def __init__(self, root):
+        self.root = root
         self.fontePadrao = ("Arial", "10")
   
         ################
         ##### img ###### BUTTON
         ################
         self.img = ImageTk.PhotoImage(Image.open(os.path.join(os.path.dirname(__file__), 'imgs', 'img.png')))
-        img_label = Button(image=self.img)
-        img_label.grid(row=0, column=0, columnspan=4)
+        self.img_label = Button(image=self.img)
+        self.img_label.grid(row=0, column=0, columnspan=4)
 
 
         ####################
@@ -166,37 +167,24 @@ class GUI:
         self.Browse["font"] = ("Calibri", "10")
         self.Browse["bg"] = "red"
         self.Browse["fg"] = "white"
-        self.Browse["command"] = self.call_main
+        self.Browse["command"] = lambda:[self.quit(), self.call_main()]
         self.Browse.grid(row=10, column=2, columnspan=2, pady='10')
 
-
     def call_main(self):
-        self.quit()
         m = Main()
         m.main()
 
     def browse_button(self):
         webbrowser.open('http://www.github.com/samuelbfg/', new=2)
 
-    #Método verificar senha
-    def verificaSenha(self):
-        usuario = self.nome.get()
-        senha = self.senha.get()
-        if usuario == "usuariodevmedia" and senha == "dev":
-            self.mensagem["text"] = "Autenticado"
-            path = askdirectory(title='Select Folder') # shows dialog box and return the path
-            print(path)  
-        else:
-            self.mensagem["text"] = "Erro na autenticação"
-
     def quit(self):
         self.root.destroy()
   
   
 root = Tk()
-GUI(root)
+gui = GUI(root)
+root = root
 root.title('KUMAS 1.0')
-# root.geometry("240x600")
 root.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'ico.ico'))
 root.resizable(width=False, height=False)
 root.mainloop()
