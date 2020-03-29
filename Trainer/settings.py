@@ -7,7 +7,7 @@ import pygetwindow as gw
 
 
 
-def get_tibia_active():
+def get_tibia_active(CHAR_NAME):
 	'''
 	Get Tibia tab
 		@params
@@ -16,9 +16,11 @@ def get_tibia_active():
 		@return
 		void
 	'''
-	tibia = gw.getWindowsWithTitle('Tibia -')
-	tibia[0].activate()
-
+	try:
+		tibia = gw.getWindowsWithTitle('Tibia - '+str(CHAR_NAME))[0]
+		tibia.activate()
+	except IndexError:
+		pass
 
 def get_latest_image(SS_DIRPATH, valid_extensions=('jpg','jpeg','png')):
 	'''

@@ -19,8 +19,9 @@ if __name__ == '__main__':
 		FOOD_HOTKEY = "f10"
 		SOFT_HOTKEY = "-"
 		RUNE_HOTKEY = "0"
-		CYCLE_TIME = 60
-		RUNES_PER_CYCLE = 2
+		CHAR_NAME = "Biel Huntedz"
+		CYCLE_TIME = 2
+		RUNES_PER_CYCLE = 3
 		###############
 		###############
 		cycle_count = 1
@@ -30,7 +31,7 @@ if __name__ == '__main__':
     	finding mana bar position
     	'''
 		settings.idle(.5)
-		settings.get_tibia_active()
+		settings.get_tibia_active(CHAR_NAME)
 		settings.take_screenshot(SS_HOTKEY) ########## SS
 		settings.idle(1.5) #cd to del
 		mana_full_path = settings.get_latest_image(SS_DIRPATH, valid_extensions='png')
@@ -42,7 +43,7 @@ if __name__ == '__main__':
 		'''
 		pyautogui.press(RUNE_HOTKEY) # first rune
 		while True:
-			settings.get_tibia_active()
+			settings.get_tibia_active(CHAR_NAME)
 			settings.idle(.5)
 			settings.take_screenshot(SS_HOTKEY)
 			settings.idle(1.5)
@@ -58,22 +59,26 @@ if __name__ == '__main__':
 				percentage(mana_full, pixels_mana))
 			print('PERCENTAGE MANA:', percentage_mana)
 
-			if percentage_mana == 100:
+			if percentage_mana == 100 or percentage_mana == 0:
 				cycle_break+=1
 				print('CYCLE BREAK + 1')
 				print('- DIDN\'T RUNED')
 			elif percentage_mana >= 50:
-				settings.get_tibia_active()
+				settings.get_tibia_active(CHAR_NAME)
 				for _ in range(RUNES_PER_CYCLE):
+					settings.idle(.5)
 					pyautogui.press(RUNE_HOTKEY)
-					settings.idle(2) # rune cd
+					settings.idle(1.5) # rune cd
 				print('- RUNED')
 			else: print('- DIDN\'T RUNED')
 
-			healing = Healing(cycle_pic)
+			healing = Healing(cycle_pic, CHAR_NAME)
 			healing.ring(RING_HOTKEY)
 			settings.idle(.5)
-			healing.eat_food(FOOD_HOTKEY)
+			for _ in range(3):
+				pyautogui.press(FOOD_HOTKEY)
+				time.sleep(.5)
+			# healing.eat_food(FOOD_HOTKEY)
 			settings.idle(.5)
 			healing.soft_boots(SOFT_HOTKEY)
 
@@ -88,7 +93,7 @@ if __name__ == '__main__':
 
 			cycle_count = settings.increment(cycle_count)
 			settings.del_screenshot(cycle_pic)
-			settings.idle(CYCLE_TIME)
+			settings.idle(CYCLE_TIME*60)
 
 	except KeyboardInterrupt:
 		print('#'*10+'  CANCELADO  '+'#'*10)

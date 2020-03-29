@@ -7,8 +7,9 @@ import settings
 
 
 class Healing:
-	def __init__(self, pic_path):
+	def __init__(self, pic_path, CHAR_NAME):
 		self.pic_path = pic_path
+		self.char_name = CHAR_NAME
 
 	def ring(self, RING_HOTKEY):
 		'''
@@ -30,7 +31,7 @@ class Healing:
 			print('- DIDN\'T PULL UP RING: SLOT NOT EMPTY!')
 		else:
 			print('- RING NOT FOUND! TRYING TO EQUIP')
-			settings.get_tibia_active()
+			settings.get_tibia_active(self.char_name)
 			pyautogui.press(RING_HOTKEY)
 
 
@@ -55,7 +56,7 @@ class Healing:
 			print('- DIDN\'T EQUIP BOOTS: SLOT NOT EMPTY!')
 		else:
 			print('- SOFT EQUIPPED')
-			settings.get_tibia_active()
+			settings.get_tibia_active(self.char_name)
 			pyautogui.press(SOFT_HOTKEY)
 
 
@@ -69,16 +70,19 @@ class Healing:
 			@return
 			void
 		'''
-		img = os.path.join(os.path.dirname(__file__), 'imgs', 'hungry.png')
-		template = cv2.imread(img,0)
-		tmp = settings.is_visible(template, self.pic_path, False)
-		x = []
-		for item in tmp:
-			x.extend(item)
-		if x == []:
-			print('- DIDN\'T EAT FOOD: NOT HUNGRY!')
-		else:
-			settings.get_tibia_active()
-			print('- FOOD EATEN')
-			for _ in range(5):
-				pyautogui.press(FOOD_HOTKEY)
+		# img = os.path.join(os.path.dirname(__file__), 'imgs', 'hungry.png')
+		# template = cv2.imread(img,0)
+		# tmp = settings.is_visible(template, self.pic_path, False)
+		# x = []
+		# for item in tmp:
+		# 	x.extend(item)
+		# if x == []:
+		# 	print('- DIDN\'T EAT FOOD: NOT HUNGRY!')
+		# else:
+		# 	settings.get_tibia_active(self.char_name)
+		# 	print('- FOOD EATEN')
+		# 	for _ in range(8):
+		# 		pyautogui.press(FOOD_HOTKEY)
+
+		for _ in range(5):
+			pyautogui.press(FOOD_HOTKEY)
