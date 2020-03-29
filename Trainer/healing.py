@@ -85,4 +85,5 @@ class Healing:
 		# 		pyautogui.press(FOOD_HOTKEY)
 
 		for _ in range(5):
+			time.sleep(.5)
 			pyautogui.press(FOOD_HOTKEY)

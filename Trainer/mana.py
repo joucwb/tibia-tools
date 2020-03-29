@@ -89,3 +89,10 @@ class Mana:
 			print('#'*50)
 			print('\nA MANA PRECISA ESTAR FULL ANTES DO TREINO! :)\n\n'+'#'*50)
 			pyautogui.alert(text='ERRO NO TRAINER! VERIFIQUE O LOG', title='ATENÇÃO', button='OK')
+
+
+	def rune(self, RUNES_PER_CYCLE, RUNE_HOTKEY):
+		for _ in range(RUNES_PER_CYCLE):
+			settings.idle(.5)
+			pyautogui.press(RUNE_HOTKEY)
+			settings.idle(1.5) # rune cd
