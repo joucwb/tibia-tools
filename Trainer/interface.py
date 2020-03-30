@@ -1,4 +1,5 @@
 import os
+import logging
 from tkinter import *
 from tkinter import Tk
 from tkinter import filedialog
@@ -170,9 +171,23 @@ class GUI:
         self.Browse["command"] = lambda:[self.quit(), self.call_main()]
         self.Browse.grid(row=10, column=2, columnspan=2, pady='10')
 
+
     def call_main(self):
-        m = Main()
-        m.main()
+        self.root = Tk()
+        self.Browse = Button()
+        self.Browse["width"] = 20
+        self.Browse["text"] = "PARAR"
+        self.Browse["font"] = ("Calibri", "10")
+        self.Browse["bg"] = "green"
+        self.Browse["fg"] = "white"
+        self.Browse["command"] = self.browse_button
+        self.Browse.grid(row=10, column=0, columnspan=2)
+        self.Browse.title('KUMAS 1.0')
+        root.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'ico.ico'))
+        root.resizable(width=False, height=False)
+        root.mainloop()
+        # m = Main()
+        # m.main()
 
     def browse_button(self):
         webbrowser.open('http://www.github.com/samuelbfg/', new=2)
@@ -180,10 +195,15 @@ class GUI:
     def quit(self):
         self.root.destroy()
   
-  
+
+
+class Screen:
+    def __init__():
+        self.root = Tk()
+
+
 root = Tk()
 gui = GUI(root)
-root = root
 root.title('KUMAS 1.0')
 root.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'ico.ico'))
 root.resizable(width=False, height=False)

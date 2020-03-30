@@ -2,8 +2,6 @@ LIMITAÇÕES
 • desabilitar etiquetas
 • status bar ATIVO
 • começar com mana CHEIA
-• Ajeitar soft boots
-
 
 
 

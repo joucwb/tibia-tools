@@ -5,15 +5,16 @@ import time
 from healing import Healing
 from mana import Mana
 import settings
+import logging
 # from interface import GUI
-
+logging.basicConfig(filename='file.log',level=logging.INFO)
 SS_HOTKEY = "f12"
 SS_DIRPATH = "D:/Games/Tibia/packages/Tibia/screenshots/"
 RING_HOTKEY = "f8"
 FOOD_HOTKEY = "f10"
 SOFT_HOTKEY = "-"
 RUNE_HOTKEY = "0"
-CHAR_NAME = "Biel Huntedz"
+CHAR_NAME = "Gatitex"
 CYCLE_TIME = 2
 RUNES_PER_CYCLE = 3
 ###############
@@ -68,15 +69,15 @@ class Main:
 				settings.idle(1.5)
 				cycle_pic = settings.get_latest_image(SS_DIRPATH, valid_extensions='png')
 
-				print('#'*30)
-				print('Cycle:', cycle_count)
+				logging.info('#'*30)
+				logging.info('Cycle:', cycle_count)
 
 				currentMana = Mana(SS_DIRPATH, cycle_pic)
 
 				pixels_mana = currentMana.counting_pixels(x_min, x_max, y_min, y_max)
-				print('MANA PIXELS:', pixels_mana)
+				logging.info('MANA PIXELS:', pixels_mana)
 				percentage_mana = round(currentMana.percentage(mana_full, pixels_mana))
-				print('PERCENTAGE MANA:', percentage_mana)
+				logging.info('PERCENTAGE MANA:', percentage_mana)
 
 				if percentage_mana == 100 or percentage_mana == 0:
 					cycle_break+=1
@@ -86,8 +87,8 @@ class Main:
 					# 	settings.idle(.5)
 					# 	pyautogui.press(RUNE_HOTKEY)
 					# 	settings.idle(1.5) # rune cd
-					print('100% MANA!!!')
-					print('- RUNED')
+					logging.info('100% MANA!!!')
+					logging.info('- RUNED')
 				elif percentage_mana >= 50:
 
 					settings.get_tibia_active(CHAR_NAME)
@@ -96,8 +97,8 @@ class Main:
 					# 	pyautogui.press(RUNE_HOTKEY)
 					# 	settings.idle(1.5) # rune cd
 					currentMana.rune(RUNES_PER_CYCLE, RUNE_HOTKEY)
-					print('- RUNED')
-				else: print('- DIDN\'T RUNED')
+					logging.info('- RUNED')
+				else: logging.info('- DIDN\'T RUNED')
 
 				healing = Healing(cycle_pic, CHAR_NAME)
 				healing.ring(RING_HOTKEY)
@@ -112,11 +113,11 @@ class Main:
 
 				
 
-				print('#'*30)
-				print('  TECLE CRTL+C PARA CANCELAR  ')
+				logging.info('#'*30)
+				logging.info('  TECLE CRTL+C PARA CANCELAR  ')
 
 				if cycle_break == 5:
-					print('ATENÇÃO: SEM BLANK RUNE OU SOUL POINTS!!!!')
+					logging.info('ATENÇÃO: SEM BLANK RUNE OU SOUL POINTS!!!!')
 					break
 
 				cycle_count = settings.increment(cycle_count)
@@ -124,7 +125,7 @@ class Main:
 				settings.idle(CYCLE_TIME*60)
 
 		except KeyboardInterrupt:
-			print('#'*10+'  CANCELADO  '+'#'*10)
+			logging.info('#'*10+'  CANCELADO  '+'#'*10)
 
 
 	# if __name__ == '__main__':
