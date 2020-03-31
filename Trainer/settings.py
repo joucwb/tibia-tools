@@ -20,6 +20,7 @@ def get_tibia_active(CHAR_NAME):
 		tibia = gw.getWindowsWithTitle('Tibia - '+str(CHAR_NAME))[0]
 		tibia.activate()
 	except IndexError:
+		print(' ~~ TIBIA NOT FOUND! ~~')
 		pass
 
 def get_latest_image(SS_DIRPATH, valid_extensions=('jpg','jpeg','png')):

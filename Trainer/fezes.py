@@ -1,42 +1,45 @@
+import tkinter as tk                # python 3
+from tkinter import font  as tkfont # python 3
 import os
 import tkinter as tk
 from PIL import ImageTk, Image
 import webbrowser
-from main import Main
-
+#import Tkinter as tk     # python 2
+#import tkFont as tkfont  # python 2
 LARGE_FONT = ('Verdana', 12)
+class SampleApp(tk.Tk):
 
-
-class GUI(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
+        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
+
+        # the container is where we'll stack a bunch of frames
+        # on top of each other, then the one we want visible
+        # will be raised above the others
         container = tk.Frame(self)
-        container.grid(row=16, column=1, columnspan=4, sticky='nswe', pady='10')
-        # container.grid_rowconfigure(0, weight=1)
-        # container.grid_columnconfigure(0, weight=1)
+        container.grid()
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-
-        for F in (StartPage, PageOne):
+        for F in (StartPage, PageOne, PageTwo):
+            page_name = F.__name__
             frame = F(parent=container, controller=self)
-            self.frames[F] = frame
-            frame.grid(row=12, column=2, sticky='nsew')
-            
+            self.frames[page_name] = frame
 
-        self.show_frame(StartPage)
+            # put all of the pages in the same location;
+            # the one on the top of the stacking order
+            # will be the one that is visible.
+            frame.grid(row=0, column=0, sticky="nsew")
 
-    def show_frame(self, cont):
-        frame = self.frames[cont]
+        self.show_frame("StartPage")
+
+    def show_frame(self, page_name):
+        '''Show a frame for the given page name'''
+        frame = self.frames[page_name]
         frame.tkraise()
 
-    def quit(self):
-        GUI.destroy(self)
-
-
-    def call_main(self):
-        m = Main()
-        m.main()
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -232,7 +235,7 @@ class StartPage(tk.Frame):
         self.trainButton["font"] = ("Calibri", "10")
         self.trainButton["bg"] = "red"
         self.trainButton["fg"] = "white"
-        self.trainButton["command"] = lambda:[controller.quit(), controller.call_main()]
+        self.trainButton["command"] = lambda:controller.show_frame('PageOne')
         self.trainButton.grid(row=12, column=2, columnspan=2, pady='10')
 
         ######################
@@ -255,33 +258,46 @@ class StartPage(tk.Frame):
         webbrowser.open('http://www.github.com/samuelbfg/tibia-tools', new=2)
 
 
+class PageOne(tk.Frame):
 
-
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="This is page 1", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Go to the start page",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack()
 
 
 class PageOne(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        self.trainButton = tk.Button(self)
-        self.trainButton["width"] = 20
-        self.trainButton["text"] = "Stop Trainer"
-        self.trainButton["font"] = ("Calibri", "10")
-        self.trainButton["bg"] = "red"
-        self.trainButton["fg"] = "white"
-        self.trainButton["command"] = self.terminate
-        self.trainButton.grid()
+        trainButton = tk.Button(self)
+        trainButton["width"] = 20
+        trainButton["text"] = "Stop Trainer"
+        trainButton["font"] = ("Calibri", "10")
+        trainButton["bg"] = "red"
+        trainButton["fg"] = "white"
+        trainButton["command"] = lambda: controller.browse_tutorial
+        trainButton.grid(row=12, column=2, columnspan=2, pady='10')
 
-    def terminate(self):
-        m = Main()
-        m.terminate()
+    def browse_tutorial(self):
+        webbrowser.open('http://www.github.com/samuelbfg/tibia-tools', new=2)
 
+class PageTwo(tk.Frame):
 
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="This is page 2", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Go to the start page",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack()
 
 
 if __name__ == "__main__":
-    app = GUI()
-    app.title('KUMAS Trainer')
-    app.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'be.ico'))
-    app.resizable(width=False, height=False)
+    app = SampleApp()
     app.mainloop()

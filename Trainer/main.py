@@ -1,20 +1,19 @@
 import os
+import sys
 import cv2
 import pyautogui
 import time
 from healing import Healing
 from mana import Mana
 import settings
-import logging
-# from interface import GUI
-logging.basicConfig(filename='file.log',level=logging.INFO)
+
 SS_HOTKEY = "f12"
 SS_DIRPATH = "D:/Games/Tibia/packages/Tibia/screenshots/"
 RING_HOTKEY = "f8"
 FOOD_HOTKEY = "f10"
 SOFT_HOTKEY = "-"
 RUNE_HOTKEY = "0"
-CHAR_NAME = "Gatitex"
+CHAR_NAME = "Biel Huntedz"
 CYCLE_TIME = 2
 RUNES_PER_CYCLE = 3
 ###############
@@ -44,6 +43,13 @@ class Main:
 
 	def main(self):
 		try:
+			print('Tibia - '+(CHAR_NAME))
+			print('Diretório - '+(SS_DIRPATH))
+			print('Food Hotkey -'+str(FOOD_HOTKEY))
+			print('Ring Hotkey -'+str(RING_HOTKEY))
+			print('Soft Hotkey -'+str(SOFT_HOTKEY))
+			print('Rune Hotkey -'+str(RUNE_HOTKEY))		
+			print('Screenshot Hotkey -'+str(SS_HOTKEY))	
 			cycle_count = 1
 			cycle_break = 0
 			'''
@@ -68,36 +74,29 @@ class Main:
 				settings.idle(1.5)
 				cycle_pic = settings.get_latest_image(SS_DIRPATH, valid_extensions='png')
 
-				logging.info('#'*30)
-				logging.info('Cycle:', cycle_count)
+				print('#'*30)
+				print('Cycle:', cycle_count)
 
 				currentMana = Mana(SS_DIRPATH, cycle_pic)
 
 				pixels_mana = currentMana.counting_pixels(x_min, x_max, y_min, y_max)
-				logging.info('MANA PIXELS:', pixels_mana)
+				print('MANA PIXELS:', pixels_mana)
 				percentage_mana = round(currentMana.percentage(mana_full, pixels_mana))
-				logging.info('PERCENTAGE MANA:', percentage_mana)
+				print('PERCENTAGE MANA:', percentage_mana)
 
 				if percentage_mana == 100 or percentage_mana == 0:
 					cycle_break+=1
 					settings.get_tibia_active(CHAR_NAME)
 					currentMana.rune(RUNES_PER_CYCLE, RUNE_HOTKEY)
-					# for _ in range(RUNES_PER_CYCLE):
-					# 	settings.idle(.5)
-					# 	pyautogui.press(RUNE_HOTKEY)
-					# 	settings.idle(1.5) # rune cd
-					logging.info('100% MANA!!!')
-					logging.info('- RUNED')
+					print('SUA MANA ESTÁ 100%!')
+					print('Verifique seu tempo de ciclo e/ou numero de runas.\n')
+					print('- RUNED')
 				elif percentage_mana >= 50:
 
 					settings.get_tibia_active(CHAR_NAME)
-					# for _ in range(RUNES_PER_CYCLE):
-					# 	settings.idle(.5)
-					# 	pyautogui.press(RUNE_HOTKEY)
-					# 	settings.idle(1.5) # rune cd
 					currentMana.rune(RUNES_PER_CYCLE, RUNE_HOTKEY)
-					logging.info('- RUNED')
-				else: logging.info('- DIDN\'T RUNED')
+					print('- RUNED')
+				else: print('- DIDN\'T RUNED')
 
 				healing = Healing(cycle_pic, CHAR_NAME)
 				healing.ring(RING_HOTKEY)
@@ -112,11 +111,11 @@ class Main:
 
 				
 
-				logging.info('#'*30)
-				logging.info('  TECLE CRTL+C PARA CANCELAR  ')
+				print('#'*30)
+				print('  TECLE CRTL+C PARA CANCELAR  ')
 
 				if cycle_break == 5:
-					logging.info('ATENÇÃO: SEM BLANK RUNE OU SOUL POINTS!!!!')
+					print('ATENÇÃO: SEM BLANK RUNE OU SOUL POINTS!!!!')
 					break
 
 				cycle_count = settings.increment(cycle_count)
@@ -124,7 +123,7 @@ class Main:
 				settings.idle(CYCLE_TIME*60)
 
 		except KeyboardInterrupt:
-			logging.info('#'*10+'  CANCELADO  '+'#'*10)
+			print('#'*10+'  CANCELADO  '+'#'*10)
 
 
 	# if __name__ == '__main__':

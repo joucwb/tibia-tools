@@ -2,6 +2,7 @@ import os
 import tkinter as tk
 from PIL import ImageTk, Image
 import webbrowser
+from main import Main
 
 LARGE_FONT = ('Verdana', 12)
 
@@ -11,12 +12,17 @@ class GUI(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         container = tk.Frame(self)
+        container.grid(row=16, column=1, columnspan=4, sticky='nswe', pady='10')
+        # container.grid_rowconfigure(0, weight=1)
+        # container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
 
         for F in (StartPage, PageOne):
-            frame = F(container, self)
+            frame = F(parent=container, controller=self)
             self.frames[F] = frame
+            frame.grid(row=12, column=2, sticky='nsew')
+            
 
         self.show_frame(StartPage)
 
@@ -24,10 +30,18 @@ class GUI(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
+    def quit(self):
+        GUI.destroy(self)
+
+
+    def call_main(self):
+        m = Main()
+        m.main()
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+        self.controller = controller
         ################
         ##### img ###### BUTTON
         ################
@@ -52,11 +66,11 @@ class StartPage(tk.Frame):
         self.titulo = tk.Label(text="HOTKEYS:")
         self.titulo["font"] = ("Arial", "13", "bold")
         self.titulo.grid(row=2, column=0, sticky='nesw', columnspan=4, pady='5', padx='5')
-        
+
         ################
         ##### food ##### LABEL + ENTRY
         ################
-        self.foodLabel = tk.Label(text="Food: ", font=LARGE_FONT)
+        self.foodLabel = tk.Label(text="Food:", font=LARGE_FONT)
         self.foodLabel.grid(row=3, column=0, columnspan=1)
   
         self.food = tk.Entry()
@@ -67,7 +81,7 @@ class StartPage(tk.Frame):
         ################
         ##### soft ##### LABEL + ENTRY
         ################
-        self.softLabel = tk.Label(text="Soft: ", font=LARGE_FONT)
+        self.softLabel = tk.Label(text="Soft:", font=LARGE_FONT)
         self.softLabel.grid(row=3, column=2, columnspan=1, sticky='we')
 
         self.soft = tk.Entry()
@@ -78,7 +92,7 @@ class StartPage(tk.Frame):
         ################
         ##### ring ##### LABEL + ENTRY
         ################
-        self.ringLabel = tk.Label(text="Ring: ", font=LARGE_FONT)
+        self.ringLabel = tk.Label(text="Ring:", font=LARGE_FONT)
         self.ringLabel.grid(row=4, column=0)
   
         self.ring = tk.Entry()
@@ -89,7 +103,7 @@ class StartPage(tk.Frame):
         ################
         ##### rune ##### LABEL + ENTRY
         ################
-        self.runeLabel = tk.Label(text="Rune: ", font=LARGE_FONT)
+        self.runeLabel = tk.Label(text="Rune:", font=LARGE_FONT)
         self.runeLabel.grid(row=4, column=2)
   
         self.rune = tk.Entry()
@@ -100,7 +114,7 @@ class StartPage(tk.Frame):
         ##################
         ### screenshot ### LABEL + ENTRY
         ##################
-        self.ssHotkeyLabel = tk.Label(text="Screenshot: ")
+        self.ssHotkeyLabel = tk.Label(text="Screenshot:")
         self.ssHotkeyLabel["font"] = LARGE_FONT
         self.ssHotkeyLabel.grid(row=6, column=0, sticky='w')
 
@@ -129,7 +143,7 @@ class StartPage(tk.Frame):
         ######################
         ##### cycle time ##### LABEL + ENTRY
         ######################
-        self.ssHotkeyLabel = tk.Label(text="Screenshot: ")
+        self.ssHotkeyLabel = tk.Label(text="Screenshot:")
         self.ssHotkeyLabel["font"] = LARGE_FONT
         self.ssHotkeyLabel.grid(row=8, column=0)
 
@@ -141,7 +155,7 @@ class StartPage(tk.Frame):
         ######################
         ##### cycle time ##### LABEL + ENTRY
         ######################
-        self.cycleTimeLabel = tk.Label(text="Cycle Time: ")
+        self.cycleTimeLabel = tk.Label(text="Cycle Time:")
         self.cycleTimeLabel["font"] = LARGE_FONT
         self.cycleTimeLabel.grid(row=8, column=0,padx='5', pady='5')
 
@@ -153,7 +167,7 @@ class StartPage(tk.Frame):
         ######################
         ### runes p/ cycle ### LABEL + ENTRY
         ######################
-        self.runesCycleLabel = tk.Label(text="Runes p/ Cycle: ")
+        self.runesCycleLabel = tk.Label(text="Runes p/ Cycle:")
         self.runesCycleLabel["font"] = LARGE_FONT
         self.runesCycleLabel.grid(row=8, column=2)
 
@@ -218,7 +232,7 @@ class StartPage(tk.Frame):
         self.trainButton["font"] = ("Calibri", "10")
         self.trainButton["bg"] = "red"
         self.trainButton["fg"] = "white"
-        self.trainButton["command"] = lambda:controller.show_frame(PageOne)
+        self.trainButton["command"] = lambda:[controller.quit(), controller.call_main()]
         self.trainButton.grid(row=12, column=2, columnspan=2, pady='10')
 
         ######################
@@ -241,22 +255,33 @@ class StartPage(tk.Frame):
         webbrowser.open('http://www.github.com/samuelbfg/tibia-tools', new=2)
 
 
+
+
+
+
 class PageOne(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        self.trainButton = tk.Button()
+        self.controller = controller
+        self.trainButton = tk.Button(self)
         self.trainButton["width"] = 20
-        self.trainButton["text"] = "Train"
+        self.trainButton["text"] = "Stop Trainer"
         self.trainButton["font"] = ("Calibri", "10")
         self.trainButton["bg"] = "red"
         self.trainButton["fg"] = "white"
-        self.trainButton["command"] = lambda:controller.show_frame(StartPage)
-        self.trainButton.grid(row=0, column=0, columnspan=2, pady='10')
+        self.trainButton["command"] = self.terminate
+        self.trainButton.grid()
+
+    def terminate(self):
+        m = Main()
+        m.terminate()
 
 
 
-app = GUI()
-app.title('KUMAS Trainer')
-app.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'be.ico'))
-app.resizable(width=False, height=False)
-app.mainloop()
+
+if __name__ == "__main__":
+    app = GUI()
+    app.title('KUMAS Trainer')
+    app.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'be.ico'))
+    app.resizable(width=False, height=False)
+    app.mainloop()
