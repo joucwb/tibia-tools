@@ -180,12 +180,12 @@ class GUI:
         self.Browse["font"] = ("Calibri", "10")
         self.Browse["bg"] = "green"
         self.Browse["fg"] = "white"
-        self.Browse["command"] = self.browse_button
-        self.Browse.grid(row=10, column=0, columnspan=2)
-        self.Browse.title('KUMAS 1.0')
-        root.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'ico.ico'))
-        root.resizable(width=False, height=False)
-        root.mainloop()
+        self.Browse["command"] = self.quit
+        # self.root.grid(row=10, column=0, columnspan=2)
+        self.root.title('KUMAS 1.0')
+        self.root.iconbitmap(os.path.join(os.path.dirname(__file__), 'imgs', 'ico.ico'))
+        self.root.resizable(width=False, height=False)
+        self.root.mainloop()
         # m = Main()
         # m.main()
 
@@ -200,6 +200,7 @@ class GUI:
 class Screen:
     def __init__():
         self.root = Tk()
+        
 
 
 root = Tk()

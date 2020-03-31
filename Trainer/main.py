@@ -36,7 +36,6 @@ class Main:
 		global CHAR_NAME
 		global CYCLE_TIME
 		global RUNES_PER_CYCLE
-		# Gui().quit()
 
 		###############
 		###############
