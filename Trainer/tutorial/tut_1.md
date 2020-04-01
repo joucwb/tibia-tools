@@ -81,3 +81,6 @@ no exemplo deste tutorial, foi setado a tecla f12, como mostra a imagem abaixo:
 
 ![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config4_0.png?raw=true "Status Bar")
 
+3. *Pronto!* Seu KUMAS ja está pronto para ser utilizado, não esqueça que **SUA MANA PRECISA ESTAR
+CHEIA** antes de clicar no botão de treinar! Clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_2.md) para aprender como rodar o programa.
+
