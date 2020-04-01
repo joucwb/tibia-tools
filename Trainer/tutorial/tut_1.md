@@ -32,7 +32,7 @@ pip install -r requirements.txt
 ```
 ![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/install1_1.png?raw=true "Install requirements.txt")
 
-7. Aguarde o tempo necessário para o *download* dos pacotes, e finalmente podemos testar abrir o KUMAS Trainer, para isso, tecle:
+7. Aguarde o tempo necessário para o *download* dos pacotes, e finalmente podemos abrir o KUMAS Trainer, para isso, tecle:
 ```shell
 python kumas.py
 ```
