@@ -41,7 +41,43 @@ python kumas.py
 8. A tela inicial do app vai abrir, como indica a imagem abaixo:
 
 
-## 2. Configurando seu KUMAS
+## 2. Configurando seu KUMAS pela primeira vez:
 
 
 ![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/kumas0.png?raw=true "KUMAS")
+
+1. Entradas:
+
+- **Character Name:** Coloque o nick do seu personagem.
+- **Food:** Hotkey da food.
+- **Ring:** Hotkey do ring.
+- **Soft:** Hotkey da soft boots.
+- **Rune:** Hotkey para runar.
+- **Screenshot:** Hotkey para tirar *Screenshots*.
+- **Botão *Browse:*** Coloque o diretório das screenshots do Tibia.
+- **Botão *Save Configs:*** Salva as configurações atuais.
+- **Cycle Time:** Tempo de cada ciclo (a cada tempo de ciclo será runado o numero de runas setado) em minutos.
+- **Runes per cycle:** Runas por ciclo. Quantas runas serão runadas a cada ciclo.
+
+2. Antes de iniciar o treino, precisamos configurar nosso client do Tibia para deixar o ambiente preparado:
+
+- Primeiramente precisamos configurar uma *hotkey* para tirar screenshots dentro das *options* (tecla de atalho: crtl+k) do Tibia client, 
+no exemplo deste tutorial, foi setado a tecla f12, como mostra a imagem abaixo:
+
+![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config1_0.png?raw=true "Screenshot hotkey")
+
+**É recomendado que você escolha a mesma *hotkey* para ambos *Chat On* e *Chat Off*
+
+- Após isso, vá em ***Interface*** e escolha a opção *Corners* para Colourise Loot Value:
+
+![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config2_0.png?raw=true "Corners")
+
+- Depois vá em ***Interface >> HUD*** e deixe habilitado a opção *Show Status Bar*.
+
+![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config3_0.png?raw=true "Status Bar")
+
+- Por fim, vá em ***Misc. >> Screenshots*** e desmarque a opção *Only Capture Game Window*. É também nessa aba que você pode clicar no botão
+*Open Screenshot Folder* para saber onde fica o diretório de screenshots do Tibia no seu computador.
+
+![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config4_0.png?raw=true "Status Bar")
+
