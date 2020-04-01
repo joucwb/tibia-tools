@@ -22,8 +22,8 @@ que, ao reconhecer uma determinada imagem na tela, realiza uma ação, por isso 
 
 ### 2. **Tutoriais**
 
-* Para tutorial de instalação dos requisitos clique aqui.
-* Já tem os requisitos? Veja como configurar aqui.
+* Para tutorial de instalação dos requisitos clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_0.md).
+* Já tem os requisitos? Veja como configurar [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_1.md).
 * Tudo pronto? não esqueça do *check-list* de funcionamento.
 
 ### 3. **Check list de funcionamento**
@@ -32,6 +32,7 @@ que, ao reconhecer uma determinada imagem na tela, realiza uma ação, por isso 
 * Verificar se a *screenshot* está contemplando toda a tela do jogo;
 * Editar a interface do jogo para a cor dos itens seja definidas em etiquetas;
 * Verificar se a *Soft Boots* e *Status Bar* estão visíveis.
+* **SUA MANA PRECISA ESTAR CHEIA ANTES DE COMEÇAR A TREINAR!**
 
 ### 4. **Encontrou algum *bug*? Sugestões?** 
 
