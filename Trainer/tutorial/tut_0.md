@@ -21,4 +21,4 @@ encontrar a tabela *Files*, e faça o download da versão executável para windo
 
 ![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/tut3.png?raw=true "Python install")
 
-3. Com o Python instalado, siga para o [Tutorial de Configuração](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_0.md).
+3. Com o Python instalado, siga para o [Tutorial de Configuração](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_1.md).
