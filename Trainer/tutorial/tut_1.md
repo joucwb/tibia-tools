@@ -66,7 +66,7 @@ no exemplo deste tutorial, foi setado a tecla f12, como mostra a imagem abaixo:
 
 ![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config1_0.png?raw=true "Screenshot hotkey")
 
-**É recomendado que você escolha a mesma *hotkey* para ambos *Chat On* e *Chat Off*
+É recomendado que você escolha a mesma *hotkey* para ambos *Chat On* e *Chat Off*
 
 - Após isso, vá em ***Interface*** e escolha a opção *Corners* para Colourise Loot Value:
 
