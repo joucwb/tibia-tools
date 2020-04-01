@@ -5,7 +5,7 @@ Atualmente, estão em desenvolvimento duas ferramentas, o **Boss Checker** e o *
 
 ## • Trainer for Tibia 11 - KUMAS v0.1.0 (**BETA**)
 
-KUMAS é um macro desenvolvido especificamente para o treino online de magic level para mages no jogo. Sendo 100% afk, o usuário consegue 
+KUMAS é um macro desenvolvido (apenas para *Windows*) especificamente para o treino online de magic level para mages no jogo. Sendo 100% afk, o usuário consegue 
 criar runas durante o tempo que ele quiser. O *core* do funcionamento se dá através da biblioteca de visão computacional [OpenCV](https://opencv.org/) 
 que, ao reconhecer uma determinada imagem na tela, realiza uma ação, por isso é necessário que o cliente do Tibia esteja ativo (nas funções que possuem busca de imagens).
 
@@ -45,3 +45,8 @@ Contato:
 WhatsApp (88) 99846-3757
 
 samuelbfgomes@gmail.com
+
+### 5. AVISO LEGAL:
+
+- Nenhum macro é 100% seguro e este projeto não tem relação/associação a CipSoft GmbH ou qualquer outra empresa, podendo ser contra os seus TOS/EULA. A responsabilidade de uso é **totalmente pessoal**. No entanto, por não ser um arquivo executável (.exe) e sim um processo (.py), é crível que seja indetectável
+pelo *BattleEye*, por não fazer nenhuma distinção com subprocessos do sistema operacional.
