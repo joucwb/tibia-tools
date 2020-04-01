@@ -1,4 +1,5 @@
 import os
+import sys
 import cv2
 import pyautogui
 import time
@@ -21,7 +22,7 @@ def get_tibia_active(CHAR_NAME):
 		tibia.activate()
 	except IndexError:
 		print(' ~~ TIBIA NOT FOUND! ~~')
-		pass
+		sys.exit(0)
 
 def get_latest_image(SS_DIRPATH, valid_extensions=('jpg','jpeg','png')):
 	'''

@@ -1,5 +1,6 @@
 import os
 import tkinter as tk
+from tkinter import filedialog
 from PIL import ImageTk, Image
 import webbrowser
 from main import Main
@@ -63,6 +64,7 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        self.ssDirPath = SS_DIRPATH
         ################
         ##### img ###### BUTTON
         ################
@@ -151,7 +153,7 @@ class StartPage(tk.Frame):
         self.Browse["width"] = 10
         self.Browse["text"] = "Browse"
         self.Browse["font"] = ("Calibri", "10")
-        # self.Browse["command"] = self.browse_button
+        self.Browse["command"] = self.browse_dirpath
         self.Browse.grid(row=6, column=2, columnspan=4)
 
         ######################
@@ -268,6 +270,11 @@ class StartPage(tk.Frame):
         self.softEntry.get(),self.runeEntry.get(),self.charEntry.get(),
         self.cycleTimeEntry.get(),self.runesCycleEntry.get()]
         pickle.dump(variables, open('vars.dat', 'wb'))
+
+    def browse_dirpath(self):
+        filename = filedialog.askdirectory()
+        self.ssDirPath = filename
+        return filename
 
 
 class PageOne(tk.Frame):
