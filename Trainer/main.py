@@ -43,7 +43,7 @@ class Main:
 
 	def main(self):
 		try:
-			print('Tibia - '+(CHAR_NAME))
+			print('\nTibia - '+(CHAR_NAME))
 			print('Diretório - '+(SS_DIRPATH))
 			print('Food Hotkey -'+str(FOOD_HOTKEY))
 			print('Ring Hotkey -'+str(RING_HOTKEY))
