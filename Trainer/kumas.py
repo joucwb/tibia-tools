@@ -65,6 +65,7 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.ssDirPath = SS_DIRPATH
+        print(self.ssDirPath)
         ################
         ##### img ###### BUTTON
         ################
@@ -266,15 +267,28 @@ class StartPage(tk.Frame):
         webbrowser.open('http://www.github.com/samuelbfg/tibia-tools', new=2)
 
     def save_configs(self):
-        variables = [self.ssHotkeyEntry.get(),SS_DIRPATH,self.ringEntry.get(),self.foodEntry.get(),
+        variables = [self.ssHotkeyEntry.get(),self.ssDirPath,self.ringEntry.get(),self.foodEntry.get(),
         self.softEntry.get(),self.runeEntry.get(),self.charEntry.get(),
         self.cycleTimeEntry.get(),self.runesCycleEntry.get()]
         pickle.dump(variables, open('vars.dat', 'wb'))
+        print('- -- -'*10)
+        print('Configurações Atualizadas:')
+        print('Char - '+(self.charEntry.get()))
+        print('Diretório - '+(self.ssDirPath))
+        print('Food Hotkey - '+str(self.foodEntry.get()))
+        print('Ring Hotkey - '+str(self.ringEntry.get()))
+        print('Soft Hotkey - '+str(self.softEntry.get()))
+        print('Rune Hotkey - '+str(self.runeEntry.get()))       
+        print('Screenshot Hotkey - '+str(self.ssHotkeyEntry.get()))
+        print('Tempo de Ciclo (minutos) - '+str(self.cycleTimeEntry.get()))       
+        print('Runas por Ciclo - '+str(self.runesCycleEntry.get()))
+        print('- -- -'*10)
 
     def browse_dirpath(self):
         filename = filedialog.askdirectory()
         self.ssDirPath = filename
-        return filename
+        print('Diretório de Screenshots Atualizado!')
+        # return filename
 
 
 class PageOne(tk.Frame):
