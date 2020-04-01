@@ -8,26 +8,9 @@ import time
 
 LARGE_FONT = ('Verdana', 12)
 
-'''
-variables
-'''
-# SS_HOTKEY = "f12"
-# SS_DIRPATH = "D:/Games/Tibia/packages/Tibia/screenshots/"
-# RING_HOTKEY = "f8"
-# FOOD_HOTKEY = "f10"
-# SOFT_HOTKEY = "-"
-# RUNE_HOTKEY = "0"
-# CHAR_NAME = "Biel Huntedz"
-# CYCLE_TIME = 2
-# RUNES_PER_CYCLE = 3
-
-
-
-
 class GUI(tk.Tk):
     def __init__(self, *args, **kwargs):
         globals = self.load_configs()
-        # print(len(globals
         global SS_HOTKEY 
         global SS_DIRPATH 
         global RING_HOTKEY 
@@ -37,15 +20,6 @@ class GUI(tk.Tk):
         global CHAR_NAME
         global CYCLE_TIME
         global RUNES_PER_CYCLE
-        # self.SS_HOTKEY = globals[0]
-        # self.SS_DIRPATH = globals[1]
-        # self.RING_HOTKEY = globals[2]
-        # self.FOOD_HOTKEY = globals[3]
-        # self.SOFT_HOTKEY = globals[4]
-        # self.RUNE_HOTKEY = globals[5]
-        # self.CHAR_NAME = globals[6]
-        # self.CYCLE_TIME = globals[7]
-        # self.RUNES_PER_CYCLE = globals[8]
         SS_HOTKEY = globals[0]
         SS_DIRPATH = globals[1]
         RING_HOTKEY = globals[2]
@@ -55,12 +29,11 @@ class GUI(tk.Tk):
         CHAR_NAME = globals[6]
         CYCLE_TIME = globals[7]
         RUNES_PER_CYCLE = globals[8]
-        tk.Tk.__init__(self, *args, **kwargs)
 
+        tk.Tk.__init__(self, *args, **kwargs)
+        
         container = tk.Frame(self)
         container.grid(row=16, column=1, columnspan=4, sticky='nswe', pady='10')
-        # container.grid_rowconfigure(0, weight=1)
-        # container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
 
@@ -69,7 +42,6 @@ class GUI(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=12, column=2, sticky='nsew')
             
-
         self.show_frame(StartPage)
 
     def show_frame(self, cont):
@@ -80,9 +52,9 @@ class GUI(tk.Tk):
         GUI.destroy(self)
 
     def call_main(self):
-        m = Main()
+        m = Main(SS_HOTKEY, SS_DIRPATH, RING_HOTKEY, 
+            FOOD_HOTKEY, SOFT_HOTKEY, RUNE_HOTKEY, CHAR_NAME, CYCLE_TIME, RUNES_PER_CYCLE)
         m.main()
-
 
     def load_configs(self):
         return pickle.load(open('vars.dat', 'rb'))
@@ -122,8 +94,6 @@ class StartPage(tk.Frame):
         self.foodLabel = tk.Label(text="Food:", font=LARGE_FONT)
         self.foodLabel.grid(row=3, column=0, columnspan=1)
         self.foodEntry = tk.StringVar(parent, value=FOOD_HOTKEY)
-        controller.FOOD_HOTKEY = self.foodEntry.get()
-        print(controller.FOOD_HOTKEY)
         self.food = tk.Entry(textvariable = self.foodEntry)
         self.food["width"] = 5
         self.food["font"] = LARGE_FONT
@@ -190,18 +160,6 @@ class StartPage(tk.Frame):
         self.cycleConfig = tk.Label(text="CYCLE CONFIG:")
         self.cycleConfig["font"] = ("Arial", "13", "bold")
         self.cycleConfig.grid(row=7, columnspan= 4, sticky='nesw',padx='20',pady='10')
-
-        # ######################
-        # ##### cycle time ##### LABEL + ENTRY
-        # ######################
-        # self.ssHotkeyLabel = tk.Label(text="Screenshot:")
-        # self.ssHotkeyLabel["font"] = LARGE_FONT
-        # self.ssHotkeyLabel.grid(row=8, column=0)
-
-        # self.ssHotkey = tk.Entry()
-        # self.ssHotkey["width"] = 5
-        # self.ssHotkey["font"] = LARGE_FONT
-        # self.ssHotkey.grid(row=8, column=1)
 
         ######################
         ##### cycle time ##### LABEL + ENTRY
@@ -306,16 +264,11 @@ class StartPage(tk.Frame):
         webbrowser.open('http://www.github.com/samuelbfg/tibia-tools', new=2)
 
     def save_configs(self):
-        # SS_HOTKEY = self.SS_HOTKEY
-        variables = [self.ssHotkeyEntry.get(),SS_DIRPATH,RING_HOTKEY,FOOD_HOTKEY,
-        SOFT_HOTKEY,RUNE_HOTKEY,CHAR_NAME,
-        CYCLE_TIME,RUNES_PER_CYCLE]
-        print(self.ssHotkeyEntry.get())
-        # variables = [self.SS_HOTKEY,self.SS_DIRPATH,self.RING_HOTKEY,self.FOOD_HOTKEY,
-        # self.SOFT_HOTKEY,self.RUNE_HOTKEY,self.CHAR_NAME,
-        # self.CYCLE_TIME,self.RUNES_PER_CYCLE]
+        variables = [self.ssHotkeyEntry.get(),SS_DIRPATH,self.ringEntry.get(),self.foodEntry.get(),
+        self.softEntry.get(),self.runeEntry.get(),self.charEntry.get(),
+        self.cycleTimeEntry.get(),self.runesCycleEntry.get()]
         pickle.dump(variables, open('vars.dat', 'wb'))
-        # print(variables)
+
 
 class PageOne(tk.Frame):
     def __init__(self, parent, controller):
