@@ -32,6 +32,6 @@ Quando o programa começar a rodar, verifique no seu *cmd* se os parâmetros est
 
 ![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/example0.png?raw=true "Example")
 
-## 7. Agora é só monitoraro seu treino, se tudo estiver correto, ele ficará 100% afk runando.
+## 7. Agora é só monitorar o seu treino, se tudo estiver correto, ele ficará 100% afk runando.
 
 Clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/README.md) para voltar.

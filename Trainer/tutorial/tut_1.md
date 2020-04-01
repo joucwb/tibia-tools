@@ -53,8 +53,8 @@ python kumas.py
 - **Ring:** Hotkey do ring.
 - **Soft:** Hotkey da soft boots.
 - **Rune:** Hotkey para runar.
-- **Screenshot:** Hotkey para tirar *Screenshots*.
-- **Botão *Browse:*** Coloque o diretório das screenshots do Tibia.
+- **Screenshot:** Hotkey para tirar *Screenshots*. 
+- **Botão *Browse:*** Coloque o diretório das screenshots do Tibia. Para achar esse diretório veja [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config4_0.png?raw=true "Screenshots").
 - **Botão *Save Configs:*** Salva as configurações atuais.
 - **Cycle Time:** Tempo de cada ciclo (a cada tempo de ciclo será runado o numero de runas setado) em minutos.
 - **Runes per cycle:** Runas por ciclo. Quantas runas serão runadas a cada ciclo.
@@ -79,7 +79,7 @@ no exemplo deste tutorial, foi setado a tecla f12, como mostra a imagem abaixo:
 - Por fim, vá em ***Misc. >> Screenshots*** e desmarque a opção *Only Capture Game Window*. É também nessa aba que você pode clicar no botão
 *Open Screenshot Folder* para saber onde fica o diretório de screenshots do Tibia no seu computador.
 
-![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config4_0.png?raw=true "Status Bar")
+![alt text](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/imgs/config4_0.png?raw=true "Screenshots")
 
 3. *Pronto!* Seu KUMAS ja está pronto para ser utilizado, não esqueça que **SUA MANA PRECISA ESTAR
 CHEIA** antes de clicar no botão de treinar! Clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_2.md) para aprender como rodar o programa.
