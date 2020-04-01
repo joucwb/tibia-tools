@@ -65,7 +65,6 @@ class StartPage(tk.Frame):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         self.ssDirPath = SS_DIRPATH
-        print(self.ssDirPath)
         ################
         ##### img ###### BUTTON
         ################
