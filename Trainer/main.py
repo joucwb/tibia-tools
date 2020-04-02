@@ -7,19 +7,7 @@ from healing import Healing
 from mana import Mana
 import settings
 
-# SS_HOTKEY = "f12"
-# SS_DIRPATH = "D:/Games/Tibia/packages/Tibia/screenshots/"
-# RING_HOTKEY = "f8"
-# FOOD_HOTKEY = "f10"
-# SOFT_HOTKEY = "-"
-# RUNE_HOTKEY = "0"
-# CHAR_NAME = "Biel Huntedz"
-# CYCLE_TIME = 2
-# RUNES_PER_CYCLE = 3
-###############
-###############
-# cycle_count = 1
-# cycle_break = 0
+
 global SS_HOTKEY
 global SS_DIRPATH
 global RING_HOTKEY

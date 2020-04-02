@@ -102,10 +102,6 @@ def is_visible(template, pic_path, keep_diff=False):
 		@return
 		tuple(coordinates found)
 	'''
-	# pyautogui.press(SS_HOTKEY) # Take screenshot
-	# time.sleep(1) 
-	# Get the latest snapshot on the imgpath dir
-	# pic_path = get_latest_image(SS_DIRPATH, valid_extensions='png') 
 	# Read the snapshot
 	img_rgb = cv2.imread(pic_path)
 	# Changing: rgb -> grayscale
@@ -124,5 +120,4 @@ def is_visible(template, pic_path, keep_diff=False):
 		print(cv2.rectangle)
 		cv2.imwrite('diff.png',img_rgb)
 
-	# os.remove(pic_path)
 	return loc

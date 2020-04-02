@@ -44,7 +44,6 @@ class Healing:
 			@return
 			void
 		'''
-
 		img = os.path.join(os.path.dirname(__file__), 'imgs', 'soft_boots.png')
 		template = cv2.imread(img,0)
 		tmp = settings.is_visible(template, self.pic_path, False)
@@ -61,28 +60,13 @@ class Healing:
 
 	def eat_food(self, FOOD_HOTKEY):
 		'''
-		Check if the character is hungry
-		If so, eats food
+		Eat food
 			@params
-			FOOD_HOTKEY: hotkey to eat food
+			FOOD_HOTKEY: food hotkey
 
 			@return
 			void
 		'''
-		# img = os.path.join(os.path.dirname(__file__), 'imgs', 'hungry.png')
-		# template = cv2.imread(img,0)
-		# tmp = settings.is_visible(template, self.pic_path, False)
-		# x = []
-		# for item in tmp:
-		# 	x.extend(item)
-		# if x == []:
-		# 	print('- DIDN\'T EAT FOOD: NOT HUNGRY!')
-		# else:
-		# 	settings.get_tibia_active(self.char_name)
-		# 	print('- FOOD EATEN')
-		# 	for _ in range(8):
-		# 		pyautogui.press(FOOD_HOTKEY)
-
 		for _ in range(5):
 			time.sleep(.5)
 			pyautogui.press(FOOD_HOTKEY)
