@@ -287,8 +287,6 @@ class StartPage(tk.Frame):
         filename = filedialog.askdirectory()
         self.ssDirPath = filename
         print('Diretório de Screenshots Atualizado!')
-        # return filename
-
 
 class PageOne(tk.Frame):
     def __init__(self, parent, controller):
