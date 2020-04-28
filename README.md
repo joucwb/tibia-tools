@@ -3,15 +3,18 @@
 Tibia-Tools é um repositório destinado a criação de ferramentas para o jogo Tibia 11 que possam auxiliar no jogo do usuário.
 Atualmente, estão em desenvolvimento duas ferramentas, o **Boss Checker** e o **KUMAS**.
 
-## • Trainer for Tibia 11 - KUMAS v0.1.0 (**BETA**)
+## • Trainer for Tibia 11 - KUMAS v0.1.1 (**BETA**)
 
 KUMAS é um macro desenvolvido (apenas para *Windows*) especificamente para o treino online de magic level para mages no jogo. Sendo 100% afk, o usuário consegue 
 criar runas durante o tempo que ele quiser. O *core* do funcionamento se dá através da biblioteca de visão computacional [OpenCV](https://opencv.org/) 
 que, ao reconhecer uma determinada imagem na tela, realiza uma ação, por isso é necessário que o cliente do Tibia esteja ativo (nas funções que possuem busca de imagens).
 
 
-### 1.  **Features KUMAS v.0.1.0**
+### 1.  **Features KUMAS:**
+#### v0.1.1 (atual, estável):
+* Habilidade de treinar com *dummys*.
 
+#### v0.1.0:
 * Come food;
 * Sobe ring;
 * Sobe soft boots;
@@ -25,6 +28,7 @@ que, ao reconhecer uma determinada imagem na tela, realiza uma ação, por isso 
 * Para tutorial de instalação dos requisitos clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_0.md).
 * Já tem os requisitos? Veja como configurar pela primeira vez [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_1.md).
 * Caso tenha dúvida como rodar o programa (depois de ja ter instalado todos os requisitos) clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_2.md).
+* Para tutorial de como utilizar o Trainer para *dummys* clique aqui.
 * Tudo pronto? não esqueça do *check-list* de funcionamento.
 
 ### 3. **Check list de funcionamento**

@@ -29,7 +29,7 @@ class Dummy:
 				print('-*'*16)
 				print('Dummy position:', self.dummy_pos)
 				print('Exercises Weapons utilizadas:', weapons)
-				settings.idle(100)
+				settings.idle(1000)
 				
 		except KeyboardInterrupt:
 			print('#'*10+'  CANCELADO  '+'#'*10)
