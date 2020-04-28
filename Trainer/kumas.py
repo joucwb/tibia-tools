@@ -246,20 +246,40 @@ class StartPage(tk.Frame):
         self.trainButton["command"] = lambda:[controller.quit(), controller.call_main()]
         self.trainButton.grid(row=12, column=2, columnspan=2, pady='10')
 
+        ################################
+        ####### Training with Dummys? ####### LABEL
+        ################################
+        self.trainLabel = tk.Label(text="Training with Dummys?")
+        self.trainLabel["font"] = ("Arial", "11", "bold")
+        self.trainLabel.grid(row=13,columnspan=4)
+
+        ################################
+        ####### Exercise Weapon ######## BUTTON
+        ################################
+        self.trainButton = tk.Button()
+        self.trainButton["width"] = 20
+        self.trainButton["text"] = "Exercise Weapon"
+        self.trainButton["font"] = ("Calibri", "10")
+        self.trainButton["bg"] = "red"
+        self.trainButton["fg"] = "white"
+        # self.trainButton["command"] = lambda:[controller.quit(), controller.call_main()]
+        self.trainButton.grid(row=14,columnspan=4, pady='10')
+        
+
         ######################
         #### ~ ~space~ ~ ##### SPECIAL SPACE
         ######################
         self._space = tk.Label(text="- -"*20)
         self._space["font"] = ("Arial", "11", "bold")
-        self._space.grid(row=13, column=0, sticky='nesw',padx='30',pady='5', columnspan=4)
+        self._space.grid(row=15, column=0, sticky='nesw',padx='30',pady='5', columnspan=4)
 
-        self.samukzLabel = tk.Label(text="KUMAS v0.1.0")
+        self.samukzLabel = tk.Label(text="KUMAS v0.1.1")
         self.samukzLabel["font"] = ("Verdana", "13", "italic")
-        self.samukzLabel.grid(row=14, column=0, columnspan=2)
+        self.samukzLabel.grid(row=16, column=0, columnspan=2)
 
         self.samukzLabel = tk.Label(text="by samukZ")
         self.samukzLabel["font"] = ("Verdana", "13", "italic")
-        self.samukzLabel.grid(row=14, column=2, columnspan=2)
+        self.samukzLabel.grid(row=16, column=2, columnspan=2)
 
 
     def browse_tutorial(self):
