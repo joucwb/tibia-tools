@@ -4,6 +4,7 @@ from tkinter import filedialog
 from PIL import ImageTk, Image
 import webbrowser
 from main import Main
+import win32api
 import pickle
 import time
 
@@ -21,6 +22,7 @@ class GUI(tk.Tk):
         global CHAR_NAME
         global CYCLE_TIME
         global RUNES_PER_CYCLE
+
         SS_HOTKEY = globals[0]
         SS_DIRPATH = globals[1]
         RING_HOTKEY = globals[2]
@@ -59,6 +61,17 @@ class GUI(tk.Tk):
 
     def load_configs(self):
         return pickle.load(open('vars.dat', 'rb'))
+
+    def enable_mouseposition(self):
+    	self.after(10, self.get_mouseposition)
+
+    def get_mouseposition(self):
+    	state_left = win32api.GetKeyState(0x01)
+    	if state_left == -127 or state_left == -128:
+    		xclick, yclick = win32api.GetCursorPos()
+    		print(xclick, yclick)
+    	else:
+    		self.after(10, self.get_mouseposition)
 
 class StartPage(tk.Frame):
     def __init__(self, parent, controller):
@@ -249,21 +262,34 @@ class StartPage(tk.Frame):
         ################################
         ####### Training with Dummys? ####### LABEL
         ################################
-        self.trainLabel = tk.Label(text="Training with Dummys?")
-        self.trainLabel["font"] = ("Arial", "11", "bold")
-        self.trainLabel.grid(row=13,columnspan=4)
+        self.dummyLabel = tk.Label(text="Training with Dummys?")
+        self.dummyLabel["font"] = ("Arial", "11", "bold")
+        self.dummyLabel.grid(row=13,columnspan=4)
+
+        #####################
+        ### weapon hotkey ### LABEL + ENTRY
+        #####################
+        self.weaponHotkeyLabel = tk.Label(text="Weapon Hotkey:")
+        self.weaponHotkeyLabel["font"] = LARGE_FONT
+        self.weaponHotkeyLabel.grid(row=14, column=0, sticky='w')
+        self.weaponHotkeyEntry = tk.StringVar(parent, value=SS_HOTKEY)
+        self.weaponHotkey = tk.Entry(textvariable=self.weaponHotkeyEntry)
+        self.weaponHotkey["width"] = 5
+        self.weaponHotkey["font"] = LARGE_FONT
+        self.weaponHotkey.grid(row=14, column=1)
 
         ################################
         ####### Exercise Weapon ######## BUTTON
         ################################
-        self.trainButton = tk.Button()
-        self.trainButton["width"] = 20
-        self.trainButton["text"] = "Exercise Weapon"
-        self.trainButton["font"] = ("Calibri", "10")
-        self.trainButton["bg"] = "red"
-        self.trainButton["fg"] = "white"
-        # self.trainButton["command"] = lambda:[controller.quit(), controller.call_main()]
-        self.trainButton.grid(row=14,columnspan=4, pady='10')
+        self.weaponButton = tk.Button()
+        self.weaponButton["width"] = 20
+        self.weaponButton["text"] = "Exercise Weapon"
+        self.weaponButton["font"] = ("Calibri", "10")
+        self.weaponButton["bg"] = "red"
+        self.weaponButton["fg"] = "white"
+        # self.weaponButton["command"] = lambda:[controller.quit(), controller.call_main()]
+        self.weaponButton["command"] = lambda:[controller.enable_mouseposition()]
+        self.weaponButton.grid(row=14,column=2,columnspan=3, pady='10')
         
 
         ######################
