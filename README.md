@@ -28,7 +28,7 @@ que, ao reconhecer uma determinada imagem na tela, realiza uma ação, por isso 
 * Para tutorial de instalação dos requisitos clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_0.md).
 * Já tem os requisitos? Veja como configurar pela primeira vez [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_1.md).
 * Caso tenha dúvida como rodar o programa (depois de ja ter instalado todos os requisitos) clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_2.md).
-* Para tutorial de como utilizar o Trainer para *dummys* clique aqui.
+* Para tutorial de como utilizar o Trainer para *dummys* clique [aqui](https://github.com/SamuelBFG/tibia-tools/blob/master/Trainer/tutorial/tut_3.md).
 * Tudo pronto? não esqueça do *check-list* de funcionamento.
 
 ### 3. **Check list de funcionamento**
