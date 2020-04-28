@@ -3,7 +3,9 @@ import tkinter as tk
 from tkinter import filedialog
 from PIL import ImageTk, Image
 import webbrowser
+import settings
 from main import Main
+from dummy import Dummy
 import win32api
 import pickle
 import time
@@ -22,6 +24,7 @@ class GUI(tk.Tk):
         global CHAR_NAME
         global CYCLE_TIME
         global RUNES_PER_CYCLE
+        global EXERCISE_WEAPON_HOTKEY
 
         SS_HOTKEY = globals[0]
         SS_DIRPATH = globals[1]
@@ -32,6 +35,7 @@ class GUI(tk.Tk):
         CHAR_NAME = globals[6]
         CYCLE_TIME = globals[7]
         RUNES_PER_CYCLE = globals[8]
+        EXERCISE_WEAPON_HOTKEY = globals[9]
 
         tk.Tk.__init__(self, *args, **kwargs)
         
@@ -63,13 +67,20 @@ class GUI(tk.Tk):
         return pickle.load(open('vars.dat', 'rb'))
 
     def enable_mouseposition(self):
+    	print('~'*30)
+    	print('AGUARDANDO O CLIQUE NO DUMMY...')
+    	print('APÓS USAR O DUMMY NÃO SE MEXA!')
+    	settings.get_tibia_active(CHAR_NAME)
     	self.after(10, self.get_mouseposition)
 
     def get_mouseposition(self):
     	state_left = win32api.GetKeyState(0x01)
     	if state_left == -127 or state_left == -128:
     		xclick, yclick = win32api.GetCursorPos()
-    		print(xclick, yclick)
+    		dummy_pos = xclick, yclick
+    		d = Dummy(EXERCISE_WEAPON_HOTKEY, CHAR_NAME, dummy_pos)
+    		self.quit()
+    		d.main()
     	else:
     		self.after(10, self.get_mouseposition)
 
@@ -272,7 +283,7 @@ class StartPage(tk.Frame):
         self.weaponHotkeyLabel = tk.Label(text="Weapon Hotkey:")
         self.weaponHotkeyLabel["font"] = LARGE_FONT
         self.weaponHotkeyLabel.grid(row=14, column=0, sticky='w')
-        self.weaponHotkeyEntry = tk.StringVar(parent, value=SS_HOTKEY)
+        self.weaponHotkeyEntry = tk.StringVar(parent, value=EXERCISE_WEAPON_HOTKEY)
         self.weaponHotkey = tk.Entry(textvariable=self.weaponHotkeyEntry)
         self.weaponHotkey["width"] = 5
         self.weaponHotkey["font"] = LARGE_FONT
@@ -314,7 +325,7 @@ class StartPage(tk.Frame):
     def save_configs(self):
         variables = [self.ssHotkeyEntry.get(),self.ssDirPath,self.ringEntry.get(),self.foodEntry.get(),
         self.softEntry.get(),self.runeEntry.get(),self.charEntry.get(),
-        self.cycleTimeEntry.get(),self.runesCycleEntry.get()]
+        self.cycleTimeEntry.get(),self.runesCycleEntry.get(),self.weaponHotkeyEntry.get()]
         pickle.dump(variables, open('vars.dat', 'wb'))
         print('- -- -'*10)
         print('Configurações Atualizadas:')
@@ -327,6 +338,7 @@ class StartPage(tk.Frame):
         print('Screenshot Hotkey - '+str(self.ssHotkeyEntry.get()))
         print('Tempo de Ciclo (minutos) - '+str(self.cycleTimeEntry.get()))       
         print('Runas por Ciclo - '+str(self.runesCycleEntry.get()))
+        print('Hotkey da Exercise Weapon - '+str(self.weaponHotkeyEntry.get()))
         print('- -- -'*10)
 
     def browse_dirpath(self):
